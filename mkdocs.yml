@@ -1,0 +1,122 @@
+site_name: NextPM
+site_description: AI-Native PM Knowledge Hub - Next-generation product management workflows
+site_author: Kang
+site_url: https://kangxh.com
+
+repo_name: NextPM
+repo_url: https://github.com/YOUR_USERNAME/NextPM
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+  icon:
+    repo: fontawesome/brands/github
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/squirrel-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+
+nav:
+  - Home: index.md
+  - PM Workflows:
+      - Overview: pm-workflows/index.md
+      - AI-Native PM: pm-workflows/ai-native-pm.md
+      - Spec Writing: pm-workflows/spec-writing.md
+      - Prototyping: pm-workflows/prototyping.md
+  - Dev Workflows:
+      - Overview: dev-workflows/index.md
+      - AI-Native Dev: dev-workflows/ai-native-dev.md
+      - Cursor for PMs: dev-workflows/cursor-for-pm.md
+  - Prompt Library:
+      - Overview: prompts/index.md
+      - PM Prompts: prompts/pm-prompts.md
+      - Dev Prompts: prompts/dev-prompts.md
+  - Examples:
+      - Specifications: examples/specs.md
+      - Case Studies: examples/case-studies.md
+  - About:
+      - Project: about/project.md
+      - AI-Native: about/ai-native.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search:
+      lang: en
+  - minify:
+      minify_html: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/YOUR_USERNAME/NextPM
+
+  analytics:
+    provider: google
+    property: G-XXXXXXXXXX  # Add your Google Analytics ID later
+
+copyright: Copyright &copy; 2025 Kang - Built with AI assistance

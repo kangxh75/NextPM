@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "MkDocs: Serve",
+      "type": "shell",
+      "command": "${workspaceFolder}/venv/Scripts/mkdocs.exe",
+      "args": ["serve"],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "MkDocs: Build",
+      "type": "shell",
+      "command": "${workspaceFolder}/venv/Scripts/mkdocs.exe",
+      "args": ["build"],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "MkDocs: Build Clean",
+      "type": "shell",
+      "command": "${workspaceFolder}/venv/Scripts/mkdocs.exe",
+      "args": ["build", "--clean"],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}

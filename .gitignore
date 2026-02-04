@@ -33,7 +33,7 @@ site/
 .cache/
 
 # IDEs
-.vscode/
+# Keep .vscode/ settings for project consistency
 .idea/
 *.swp
 *.swo

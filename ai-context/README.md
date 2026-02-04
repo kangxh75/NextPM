@@ -26,13 +26,17 @@ Welcome! This directory contains all the context you need to effectively work on
 
 ```
 NextPM/
-├── docs/               # MkDocs site content
+├── mkdocs-docs/       # MkDocs site content
 │   ├── pm-workflows/  # How PMs use AI (target audience)
 │   └── dev-workflows/ # How PMs learn dev with AI (meta)
 ├── prompts/           # Reusable prompt templates (core value)
-├── examples/          # Real PM artifacts (specs, prototypes)
-├── ai-context/        # YOU ARE HERE - Context for AI
-└── meta/             # Project decisions and retrospectives
+├── examples/          # Teaching materials (sanitized examples)
+├── project/           # NextPM's own development artifacts
+│   ├── specs/        # Feature specifications
+│   ├── tasks/        # Task breakdowns
+│   └── validations/  # Test results and validation
+├── meta/             # Architecture decisions and retrospectives
+└── ai-context/       # YOU ARE HERE - Context for AI
 ```
 
 ### Current Phase

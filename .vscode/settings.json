@@ -5,10 +5,10 @@
   "files.exclude": {
     "**/__pycache__": true,
     "**/*.pyc": true,
-    "site/": true
+    "mkdocs-site/": true
   },
   "search.exclude": {
-    "site/": true,
+    "mkdocs-site/": true,
     "venv/": true
   },
   "[markdown]": {

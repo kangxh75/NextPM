@@ -310,6 +310,21 @@ chore: update mkdocs-material to v9.5.3
 
 ### File Organization
 
+**Root Folder Structure Principle:**
+Keep the root folder clean and organized. Do not add new folders to the root unless absolutely necessary. Related files should be grouped into existing top-level folders:
+- **MkDocs files**: Prefix with `mkdocs-` (e.g., `mkdocs-docs/`, `mkdocs-static/`, `mkdocs-site/`)
+- **Python code**: Put in `src/` or appropriate module directory
+- **Documentation**: Put in `mkdocs-docs/` or `docs/` as appropriate
+- **Scripts**: Put in `scripts/`
+- **Configuration**: Only essential config files at root (e.g., `mkdocs.yml`, `requirements.txt`, `.gitignore`)
+
+**Project Folders:**
+- **`/project/`** - NextPM's own development artifacts (specs, tasks, validations)
+- **`/meta/`** - Architecture decisions and retrospectives (strategic thinking)
+- **`/examples/`** - Teaching materials for users (sanitized examples)
+- **`/prompts/`** - Reusable prompt templates
+- **`/ai-context/`** - Context for AI assistants
+
 **Keep Related Files Together:**
 ```
 prompts/pm/spec-writing/
@@ -318,6 +333,13 @@ prompts/pm/spec-writing/
 ├── user-story.md          # User story generator
 └── one-pager.md           # Executive summary template
 ```
+
+**Feature Development Flow:**
+When working on a new feature:
+1. Spec → `/project/specs/[feature-name].md`
+2. Tasks → `/project/tasks/[feature-name]-tasks.md`
+3. Implementation → Use AI coding assistants
+4. Validation → `/project/validations/[feature-name]-validation.md`
 
 **READMEs Everywhere:**
 Every directory should have a README explaining:

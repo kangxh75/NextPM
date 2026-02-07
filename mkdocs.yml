@@ -8,8 +8,8 @@ docs_dir: mkdocs-docs
 site_dir: mkdocs-site
 
 repo_name: NextPM
-repo_url: https://github.com/YOUR_USERNAME/NextPM
-edit_uri: edit/main/mkdocs-docs/
+repo_url: https://github.com/kangxh75/NextPM
+edit_uri: edit/master/mkdocs-docs/
 
 theme:
   name: material
@@ -117,7 +117,7 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/YOUR_USERNAME/NextPM
+      link: https://github.com/kangxh75/NextPM
 
   analytics:
     provider: google

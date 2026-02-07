@@ -27,7 +27,7 @@ jobs:
 
     - name: Build MkDocs site
       run: |
-        mkdocs build
+        mkdocs build --strict
 
     - name: Check for broken links (optional)
       run: |

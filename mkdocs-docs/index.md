@@ -11,10 +11,10 @@ NextPM is your practical guide to **10x your PM productivity** using AI tools. W
 
 ## 🎯 What You'll Find Here
 
-### [PM Workflows](pm-workflows/index.md)
+### [PM Workflows](engineering/pm-workflows/index.md)
 Step-by-step guides for common PM tasks with AI:
 
-- **[Spec Writing](pm-workflows/spec-writing.md)** - Write PRDs, user stories, and one-pagers faster
+- **[Spec Writing](engineering/pm-workflows/spec-writing.md)** - Write PRDs, user stories, and one-pagers faster
 - **User Research** - Synthesize interviews and feedback with AI
 - **Feature Evaluation** - Score and prioritize with AI assistance
 - **Prototyping** - Create working demos without dev resources
@@ -36,7 +36,7 @@ Real examples with measurable outcomes:
 - Quality improvements
 - Honest lessons learned
 
-### [Dev Workflows for PMs](dev-workflows/index.md)
+### [Dev Workflows for PMs](engineering/dev-workflows/index.md)
 Learn enough dev to be dangerous:
 
 - Using Cursor without coding experience
@@ -48,7 +48,7 @@ Learn enough dev to be dangerous:
 
 ### 1. Explore a Workflow
 
-Start with [Spec Writing with AI](pm-workflows/spec-writing.md) - it's the most impactful for most PMs.
+Start with [Spec Writing with AI](engineering/pm-workflows/spec-writing.md) - it's the most impactful for most PMs.
 
 ### 2. Try a Prompt
 
@@ -125,7 +125,7 @@ Based on my own experience:
 4. Use in Claude/ChatGPT
 
 ### For Deep Learning
-1. Read a [workflow guide](pm-workflows/index.md)
+1. Read a [workflow guide](engineering/pm-workflows/index.md)
 2. Review the [case study](examples/case-studies.md)
 3. Try the prompts in the guide
 4. Iterate based on your results
@@ -154,4 +154,4 @@ I'm not a developer (learning as I go!), but I've found AI tools transform how P
 
 ---
 
-**Ready to 10x your PM productivity?** Start with the [PM Workflows](pm-workflows/index.md) →
+**Ready to 10x your PM productivity?** Start with the [PM Workflows](engineering/pm-workflows/index.md) →

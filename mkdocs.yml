@@ -59,15 +59,17 @@ theme:
 
 nav:
   - Home: index.md
-  - PM Workflows:
-      - Overview: pm-workflows/index.md
-      - AI-Native PM: pm-workflows/ai-native-pm.md
-      - Spec Writing: pm-workflows/spec-writing.md
-      - Prototyping: pm-workflows/prototyping.md
-  - Dev Workflows:
-      - Overview: dev-workflows/index.md
-      - AI-Native Dev: dev-workflows/ai-native-dev.md
-      - Cursor for PMs: dev-workflows/cursor-for-pm.md
+  - Engineering:
+      - Overview: engineering/index.md
+      - PM Workflows:
+          - Overview: engineering/pm-workflows/index.md
+          - AI-Native PM: engineering/pm-workflows/ai-native-pm.md
+          - Spec Writing: engineering/pm-workflows/spec-writing.md
+          - Prototyping: engineering/pm-workflows/prototyping.md
+      - Dev Workflows:
+          - Overview: engineering/dev-workflows/index.md
+          - AI-Native Dev: engineering/dev-workflows/ai-native-dev.md
+          - Cursor for PMs: engineering/dev-workflows/cursor-for-pm.md
   - Prompt Library:
       - Overview: prompts/index.md
       - PM Prompts: prompts/pm-prompts.md

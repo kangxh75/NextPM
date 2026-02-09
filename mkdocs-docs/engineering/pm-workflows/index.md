@@ -41,7 +41,7 @@ If you're new to AI-augmented PM work, start here:
 
 1. **[AI-Native PM](ai-native-pm.md)** - Learn the mindset and principles
 2. **[Spec Writing](spec-writing.md)** - Try your first AI-assisted workflow
-3. **[Prompt Library](../prompts/index.md)** - Browse reusable templates
+3. **[Prompt Library](../../prompts/index.md)** - Browse reusable templates
 
 ## 💡 Workflow Structure
 
@@ -144,8 +144,8 @@ Based on consistent usage:
 
 ## 📚 Additional Resources
 
-- **[Prompt Library](../prompts/index.md)** - All prompts in one place
-- **[Case Studies](../examples/case-studies.md)** - Real examples with data
+- **[Prompt Library](../../prompts/index.md)** - All prompts in one place
+- **[Case Studies](../../examples/case-studies.md)** - Real examples with data
 - **[Dev Workflows](../dev-workflows/index.md)** - For PMs learning to code
 
 ---

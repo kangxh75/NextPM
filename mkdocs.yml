@@ -63,11 +63,16 @@ nav:
       - Overview: engineering/index.md
       - PM Workflows:
           - Overview: engineering/pm-workflows/index.md
+          - 0.00 Project Start: engineering/pm-workflows/0.00-project-start.md
+          - 2026-02-09-01 Engineering History: engineering/pm-workflows/2026-02-09-01-engineering-history.md
           - AI-Native PM: engineering/pm-workflows/ai-native-pm.md
           - Spec Writing: engineering/pm-workflows/spec-writing.md
           - Prototyping: engineering/pm-workflows/prototyping.md
       - Dev Workflows:
           - Overview: engineering/dev-workflows/index.md
+          - 2026-02-04 Initial Setup: engineering/dev-workflows/2026-02-04-initial-setup.md
+          - 2026-02-07 Placeholder Pages: engineering/dev-workflows/2026-02-07-placeholder-pages.md
+          - 2026-02-09 Engineering History: engineering/dev-workflows/2026-02-09-1200-engineering-history-implementation.md
           - AI-Native Dev: engineering/dev-workflows/ai-native-dev.md
           - Cursor for PMs: engineering/dev-workflows/cursor-for-pm.md
   - Prompt Library:

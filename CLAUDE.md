@@ -158,6 +158,26 @@ Specs use **Change History** section for version tracking:
 - Always use conventional commits: `feat:`, `fix:`, `docs:`, `refactor:`, etc.
 - Reference spec ID in commit message: `(#YYYY-MM-DD-nn)`
 
+**Git Hooks** (Spec Tracking):
+
+The repository includes git hooks to track which spec changes relate to:
+
+1. **Install hooks** (first time setup):
+   ```bash
+   ./scripts/install-git-hooks.sh
+   ```
+
+2. **Pre-push hook**: Prompts before each push to specify related spec
+   - Default: Most recent spec file
+   - Options: Enter spec ID, or type 'no' if not related to any spec
+   - Helps maintain proper documentation tracking
+
+3. **Post-push hook**: Reminds you to update workflow documentation
+   - PM Workflow: `/mkdocs-docs/engineering/pm-workflows/[spec-id].md`
+   - Dev Workflow: `/mkdocs-docs/engineering/dev-workflows/[timestamp]-*.md`
+
+**Hook Location**: Hooks are stored in `scripts/git-hooks/` and installed to `.git/hooks/`
+
 ## Tech Stack
 
 - **Static Site Generator**: MkDocs Material 9.5.0+

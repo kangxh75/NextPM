@@ -1,0 +1,71 @@
+#!/bin/bash
+# Pre-push hook to track which design spec changes relate to
+
+# Find the most recent spec (excluding README)
+NEWEST_SPEC=$(ls -1t project/specs/*.md 2>/dev/null | grep -v README | head -1 | xargs basename 2>/dev/null || echo "")
+SPEC_ID=$(echo "$NEWEST_SPEC" | sed 's/\.md$//')
+
+# Color codes for better visibility
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+echo ""
+echo -e "${BLUE}═══════════════════════════════════════════════════════${NC}"
+echo -e "${BLUE}        Git Push - Spec Tracking${NC}"
+echo -e "${BLUE}═══════════════════════════════════════════════════════${NC}"
+echo ""
+echo "Which design spec are these changes related to?"
+echo ""
+if [ -n "$SPEC_ID" ]; then
+    echo -e "  ${GREEN}Default:${NC} $SPEC_ID (most recent)"
+else
+    echo -e "  ${GREEN}Default:${NC} none"
+fi
+echo ""
+echo "Options:"
+echo "  - Press ENTER to use default"
+echo "  - Type spec ID (e.g., 2026-02-10-01-authentication)"
+echo "  - Type 'no' or 'none' if not related to any spec"
+echo ""
+echo -n "Related spec: "
+read -r RELATED_SPEC
+
+# Use default if empty
+if [ -z "$RELATED_SPEC" ]; then
+    RELATED_SPEC="$SPEC_ID"
+fi
+
+# Check if user wants to skip
+if [ "$RELATED_SPEC" = "no" ] || [ "$RELATED_SPEC" = "none" ] || [ "$RELATED_SPEC" = "n" ]; then
+    echo ""
+    echo -e "${YELLOW}✓${NC} Push will proceed without spec tracking"
+    echo ""
+    exit 0
+fi
+
+# Validate spec exists
+SPEC_FILE="project/specs/${RELATED_SPEC}.md"
+if [ ! -f "$SPEC_FILE" ]; then
+    echo ""
+    echo -e "${YELLOW}Warning:${NC} Spec file not found: $SPEC_FILE"
+    echo ""
+    echo -n "Continue anyway? (y/n): "
+    read -r CONTINUE
+    if [ "$CONTINUE" != "y" ] && [ "$CONTINUE" != "Y" ]; then
+        echo ""
+        echo "Push cancelled."
+        exit 1
+    fi
+fi
+
+# Store spec ID for post-push hook
+echo "$RELATED_SPEC" > .git/PUSH_SPEC_ID
+
+echo ""
+echo -e "${GREEN}✓${NC} Changes will be tracked under spec: $RELATED_SPEC"
+echo -e "${YELLOW}⚠${NC}  Remember to update PM and Dev workflow documentation"
+echo ""
+
+exit 0

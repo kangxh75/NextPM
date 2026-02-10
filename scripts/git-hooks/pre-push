@@ -54,6 +54,8 @@ echo "  - Type ${GREEN}full spec ID${NC} if not in list above"
 echo "  - Type ${YELLOW}'no'${NC} or ${YELLOW}'none'${NC} to skip spec tracking"
 echo ""
 echo -n "Your choice: "
+# Read from terminal (works on both Unix and Windows Git Bash)
+exec < /dev/tty
 read -r USER_INPUT
 
 # Determine which spec to use

@@ -218,21 +218,24 @@
                 return;
             }
 
-            const credentials = btoa(username + ':' + password);
-
             try {
                 const response = await fetch('/api/auth', {
                     method: 'POST',
                     headers: {
-                        'Authorization': 'Basic ' + credentials
-                    }
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password
+                    })
                 });
 
-                if (response.ok) {
+                const data = await response.json();
+
+                if (data.success) {
                     const returnUrl = new URLSearchParams(window.location.search).get('post_login_redirect_uri') || '/';
                     window.location.href = returnUrl;
                 } else {
-                    const data = await response.json();
                     errorEl.textContent = data.error || 'Invalid username or password';
                     errorEl.classList.add('visible');
                 }

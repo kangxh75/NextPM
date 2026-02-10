@@ -1,61 +1,51 @@
 import azure.functions as func
 import json
 import base64
+import hashlib
+import time
 from .user_store import verify_user
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     """
     Basic Auth endpoint
-    POST /api/auth with Authorization: Basic <credentials>
+    POST /api/auth with JSON body: {"username": "...", "password": "..."}
     """
 
-    # Get credentials from Authorization header
-    auth_header = req.headers.get('Authorization', '')
-
-    if not auth_header.startswith('Basic '):
+    try:
+        req_body = req.get_json()
+        username = req_body.get('username', '').strip()
+        password = req_body.get('password', '')
+    except:
         return func.HttpResponse(
-            json.dumps({"error": "Basic Auth required"}),
-            status_code=401,
-            headers={
-                "WWW-Authenticate": "Basic realm='NextPM'",
-                "Content-Type": "application/json"
-            }
+            json.dumps({"success": False, "error": "Invalid request"}),
+            status_code=400,
+            headers={"Content-Type": "application/json"}
         )
 
-    # Decode credentials
-    try:
-        credentials = base64.b64decode(auth_header[6:]).decode('utf-8')
-        username, password = credentials.split(':', 1)
-    except Exception as e:
+    if not username or not password:
         return func.HttpResponse(
-            json.dumps({"error": "Invalid credentials format"}),
-            status_code=401,
+            json.dumps({"success": False, "error": "Username and password required"}),
+            status_code=400,
             headers={"Content-Type": "application/json"}
         )
 
     # Verify credentials
     if verify_user(username, password):
-        # Azure Static Web Apps expects specific response format
+        # Create a simple session token
+        session_data = f"{username}:{int(time.time())}"
+        session_token = base64.b64encode(session_data.encode()).decode()
+
         return func.HttpResponse(
-            json.dumps({
-                "userId": username,
-                "userRoles": ["authenticated"],
-                "claims": []
-            }),
+            json.dumps({"success": True, "username": username}),
             status_code=200,
             headers={
                 "Content-Type": "application/json",
-                "X-MS-CLIENT-PRINCIPAL": base64.b64encode(
-                    json.dumps({
-                        "userId": username,
-                        "userRoles": ["authenticated"]
-                    }).encode()
-                ).decode()
+                "Set-Cookie": f"NextPM-Auth={session_token}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=28800"
             }
         )
     else:
         return func.HttpResponse(
-            json.dumps({"error": "Invalid username or password"}),
+            json.dumps({"success": False, "error": "Invalid username or password"}),
             status_code=401,
             headers={"Content-Type": "application/json"}
         )

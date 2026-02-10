@@ -56,6 +56,12 @@ Thumbs.db
 .azure/
 local.settings.json
 
+# Azure Functions
+api/__pycache__/
+
+# User Management (local only)
+scripts/users.json
+
 # Logs
 *.log
 logs/

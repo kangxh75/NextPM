@@ -7,8 +7,8 @@
 #
 # We ignore these parameters and just prompt for the spec
 
-# Consume stdin (git sends commit info here) so it doesn't interfere with read
-while read -t 0; do read -r; done
+# Redirect stdin from terminal to avoid git's stdin interfering
+exec < /dev/tty 2>&1
 
 # Find the 5 most recent specs (excluding README)
 mapfile -t SPEC_FILES < <(ls -1t project/specs/*.md 2>/dev/null | grep -v README | head -5)

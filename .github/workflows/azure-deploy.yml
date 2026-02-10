@@ -42,7 +42,6 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         action: "upload"
         app_location: "mkdocs-site" # Built site location
-        api_location: "api" # Azure Functions for authentication
         skip_app_build: true # We already built with MkDocs
 
 # NOTE: Before this workflow can run, you need to:

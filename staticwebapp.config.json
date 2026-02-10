@@ -2,15 +2,7 @@
   "routes": [
     {
       "route": "/login",
-      "rewrite": "/auth-choice.html"
-    },
-    {
-      "route": "/login/aad",
       "rewrite": "/.auth/login/aad"
-    },
-    {
-      "route": "/login/basic",
-      "rewrite": "/api/auth"
     },
     {
       "route": "/logout",
@@ -27,7 +19,7 @@
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/api/*", "/.auth/*", "/auth-choice.html"]
+    "exclude": ["/.auth/*"]
   },
   "responseOverrides": {
     "401": {

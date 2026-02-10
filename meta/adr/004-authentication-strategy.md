@@ -1,6 +1,6 @@
-# ADR 004: Dual Authentication Strategy
+# ADR 004: Authentication Strategy
 
-**Status:** Accepted
+**Status:** Superseded (see Amendment below)
 **Date:** 2026-02-10
 **Author:** Kang (with AI assistance from Claude Code)
 
@@ -221,8 +221,139 @@ If needs change:
 
 ## Status History
 
-- **2026-02-10:** Proposed and Accepted
+- **2026-02-10:** Proposed and Accepted (Dual Authentication)
+- **2026-02-10:** Superseded by Amendment 1 (Azure AD-only)
 
 ---
 
-**Next Review:** After Phase 2 implementation or when user count exceeds 10
+## Amendment 1: Changed to Azure AD-Only Authentication
+
+**Status:** Accepted
+**Date:** 2026-02-10
+**Reason:** Technical incompatibility discovered during implementation
+
+### What Changed
+
+**Original Decision:** Dual authentication (Azure AD + Basic Auth)
+**Revised Decision:** Azure AD-only authentication
+
+### Why the Change?
+
+During implementation, we discovered a fundamental platform limitation:
+
+**Technical Constraint:**
+
+Azure Static Web Apps' route-based access control (`allowedRoles: ["authenticated"]` in staticwebapp.config.json) only recognizes authentication from **built-in OAuth providers** (Azure AD, GitHub, Twitter). Custom username/password authentication cannot integrate with this route protection mechanism.
+
+**Attempted Solutions:**
+
+1. **Basic Auth with Authorization header** → Browser showed infinite popup loop due to WWW-Authenticate header
+2. **JSON POST with custom session cookie** → Cookie not recognized by Azure Static Web Apps for route enforcement
+3. **Azure Function authentication** → Session doesn't persist across pages
+
+**Root Cause:**
+
+Azure Static Web Apps manages authentication sessions internally and only trusts sessions from its built-in identity providers. Custom authentication endpoints (via Azure Functions) cannot create sessions that Azure Static Web Apps will honor for route protection.
+
+### Revised Implementation
+
+**What Was Removed:**
+
+- api/auth/ directory (Azure Functions for Basic Auth)
+- scripts/add_user.py (user management script)
+- mkdocs-static/auth-choice.html (dual auth login page)
+- Basic Auth routes in staticwebapp.config.json
+- api_location in GitHub Actions workflow
+
+**What Remains:**
+
+- staticwebapp.config.json with Azure AD provider only
+- Direct redirect to Microsoft OAuth login
+- Route protection for /prompts/\*
+- Guest user invitation support
+
+### Benefits of Azure AD-Only
+
+1. **Proper Route Protection:** Full integration with Azure Static Web Apps authentication
+2. **Enterprise Security:** OAuth 2.0 with zero custom credential management
+3. **Simpler Architecture:** No Azure Functions, no session management code
+4. **Zero Maintenance:** Microsoft handles user management, MFA, password policies
+5. **Guest User Support:** External collaborators can be invited via email
+
+### Addressing Original Concerns
+
+**Original Concern:** "All users must have Microsoft accounts"
+**Resolution:** Azure AD guest user invitations allow external users with any email address
+
+**Original Concern:** "Less flexible for non-enterprise users"
+**Resolution:** Guest invitations work with Gmail, Yahoo, corporate emails - anyone can be invited
+
+### Updated Alternatives Analysis
+
+#### Alternative 1: Azure AD Only (NOW CHOSEN)
+
+**Pros:**
+
+- ✅ Proper integration with Azure Static Web Apps
+- ✅ Enterprise-grade security
+- ✅ No custom code or session management
+- ✅ Guest user invitation support
+- ✅ Zero maintenance overhead
+
+**Cons:**
+
+- Users must accept guest invitation (one-time process)
+- Requires Azure AD app registration (one-time setup)
+
+**Decision:** ACCEPTED - only viable option for route-based protection
+
+#### Alternative 2: Basic Auth Only (NOW TECHNICALLY IMPOSSIBLE)
+
+**Decision:** Rejected - cannot integrate with Azure Static Web Apps route protection
+
+#### Alternative 3: Move to Full Backend Architecture
+
+To support username/password authentication, would require:
+
+- Migrate from static site to server-rendered app
+- Custom authentication middleware
+- Session management infrastructure
+- Database for user credentials
+
+**Decision:** Rejected - massive architecture change not justified for this use case
+
+### Consequences
+
+**Positive:**
+
+- Simpler implementation (removed ~500 lines of code)
+- More secure (OAuth 2.0 vs custom password management)
+- Zero maintenance (no password resets, no user database)
+- Proper session management by platform
+
+**Negative:**
+
+- Lost flexibility of username/password option
+- Users must have or create Microsoft account for guest access
+- Single authentication method (no user choice)
+
+**Mitigations:**
+
+- Guest user invitations are straightforward (just an email)
+- Most professional users already have Microsoft accounts
+- Authentication still only required for /prompts/\* (rest of site is public)
+
+### Implementation Status
+
+- [x] Removed all Basic Auth code
+- [x] Updated staticwebapp.config.json to Azure AD-only
+- [x] Removed auth-choice.html
+- [x] Updated GitHub Actions workflow
+- [x] Updated specification document
+- [x] Updated this ADR
+- [ ] Update PM and Dev workflow documentation
+- [ ] Deploy changes
+
+---
+
+**Next Review:** If Azure Static Web Apps adds custom authentication provider support

@@ -19,10 +19,13 @@ This will copy the hooks from `scripts/git-hooks/` to `.git/hooks/` and make the
 Runs before `git push` and prompts you to specify which design spec the changes relate to.
 
 **Behavior:**
-1. Displays the most recent spec as the default option
-2. Prompts you to confirm or enter a different spec ID
-3. Type 'no' or 'none' if changes aren't related to any spec
-4. Validates that the spec file exists (with option to continue anyway)
+
+1. Displays a numbered list of the 5 most recent specs
+2. Press ENTER to use default (newest spec, marked with green)
+3. Type a number (1-5) to select a spec from the list
+4. Type the full spec ID if it's not in the list
+5. Type 'no' or 'none' to skip spec tracking
+6. Validates that the spec file exists (with option to continue anyway)
 
 **Example:**
 
@@ -33,14 +36,18 @@ Runs before `git push` and prompts you to specify which design spec the changes 
 
 Which design spec are these changes related to?
 
-  Default: 2026-02-10-01-authentication (most recent)
+Recent specs:
+  [1] 2026-02-10-01-authentication (default)
+  [2] 2026-02-09-01-engineering-history-tracking
+  [3] 0.00-project-start
 
 Options:
-  - Press ENTER to use default
-  - Type spec ID (e.g., 2026-02-10-01-authentication)
-  - Type 'no' or 'none' if not related to any spec
+  - Press ENTER to use default (newest spec)
+  - Type a number (1-3) to select from list
+  - Type full spec ID if not in list above
+  - Type 'no' or 'none' to skip spec tracking
 
-Related spec:
+Your choice:
 ```
 
 ### post-push

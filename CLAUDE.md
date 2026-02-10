@@ -168,8 +168,9 @@ The repository includes git hooks to track which spec changes relate to:
    ```
 
 2. **Pre-push hook**: Prompts before each push to specify related spec
-   - Default: Most recent spec file
-   - Options: Enter spec ID, or type 'no' if not related to any spec
+   - Shows numbered list of 5 most recent specs
+   - Press ENTER for default (newest), or type a number (1-5) to select
+   - Type full spec ID if not in list, or 'no' to skip
    - Helps maintain proper documentation tracking
 
 3. **Post-push hook**: Reminds you to update workflow documentation

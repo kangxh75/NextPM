@@ -1,5 +1,11 @@
 #!/bin/bash
 # Pre-push hook to track which design spec changes relate to
+#
+# This hook is called with the following parameters:
+# $1 -- Name of the remote to which the push is being done
+# $2 -- URL to which the push is being done
+#
+# We ignore these parameters and just prompt for the spec
 
 # Find the 5 most recent specs (excluding README)
 mapfile -t SPEC_FILES < <(ls -1t project/specs/*.md 2>/dev/null | grep -v README | head -5)

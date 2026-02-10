@@ -125,6 +125,32 @@ Git hooks are **not committed** to the repository (they live in `.git/hooks/`), 
 - Use `git push --no-verify` to bypass pre-push hook
 - Use with caution - you'll miss spec tracking for that push
 
+## Testing
+
+You can test the hooks without actually pushing:
+
+**Method 1: Run the hook directly**
+```bash
+bash .git/hooks/pre-push
+```
+
+**Method 2: Use the test script**
+```bash
+./scripts/test-git-hooks.sh
+```
+
+**Method 3: Test with a dry-run push**
+```bash
+git push --dry-run
+# The hook will run but nothing will be pushed
+```
+
+Try different inputs to test the hook behavior:
+- Press ENTER to use default
+- Type `1`, `2`, or `3` to select a numbered spec
+- Type a full spec ID like `2026-02-10-01-authentication`
+- Type `no` or `none` to skip tracking
+
 ---
 
 **Created**: 2026-02-10

@@ -1,6 +1,6 @@
-# CLAUDE.md - AI Assistant Context for NextPM
+# CLAUDE.md
 
-This file provides context for AI assistants (Claude Code, Cursor, etc.) working with the NextPM repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
@@ -50,6 +50,11 @@ NextPM/
 │   ├── tasks/            # Task breakdowns for features
 │   ├── validations/      # Test reports and validation docs
 │   └── templates/        # Templates for specs and commits
+├── ai-context/           # AI assistant context and instructions
+├── examples/             # Real PM artifacts (root level)
+├── prompts/              # Prompt library (root level)
+├── meta/                 # Project meta-documentation
+├── scripts/              # Git hooks and utility scripts
 ├── mkdocs.yml            # MkDocs configuration (navigation, theme)
 ├── requirements.txt      # Python dependencies
 ├── venv/                 # Python virtual environment
@@ -65,7 +70,13 @@ NextPM/
    - `/mkdocs-docs/`: Website content (summaries) - Published to kangxh.com
    - Specs live in `/project/specs/` with summaries in `/mkdocs-docs/engineering/pm-workflows/`
 
-3. **Engineering History Tracking** (Feature #2026-02-09-01):
+3. **Dual Content Structure**:
+   - Content exists in both root level (`/examples/`, `/prompts/`) and under `/mkdocs-docs/`
+   - Root level folders contain actual working content
+   - `/mkdocs-docs/` folders contain website-optimized versions
+   - AI context lives in `/ai-context/` for assistant onboarding
+
+4. **Engineering History Tracking** (Feature #2026-02-09-01):
    - Navigation reorganized under "Engineering" parent section
    - PM Workflows: What to build (specifications)
    - Dev Workflows: What was built (commit summaries)
@@ -182,7 +193,7 @@ The repository includes git hooks to track which spec changes relate to:
 ## Tech Stack
 
 - **Static Site Generator**: MkDocs Material 9.5.0+
-- **Language**: Python 3.9+
+- **Language**: Python 3.x (see requirements.txt for exact dependencies)
 - **Deployment**: Azure Static Web Apps
 - **CI/CD**: GitHub Actions
 - **Theme**: Material for MkDocs with custom color scheme (indigo)
@@ -249,6 +260,6 @@ Located in `.github/workflows/`:
 
 ---
 
-**Last Updated**: 2026-02-09
+**Last Updated**: 2026-02-11
 **NextPM Version**: Phase 1 - Static Knowledge Hub
-**AI Assistant**: This file was created by Claude Sonnet 4.5
+**AI Assistant**: Updated by Claude Sonnet 4

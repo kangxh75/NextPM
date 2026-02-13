@@ -15,8 +15,6 @@ This section contains the complete PM specifications for NextPM features. These 
 - **Example**: `2026-02-09-01-engineering-history-tracking.md`
 - **Exception**: `0.00-project-start.md` (grandfathered first spec)
 
-## Legacy Migration
+## Implementation Tracking
 
-The [PM Workflows (Legacy)](../pm-workflows/index.md) section contains manually created summaries from before the automated publishing system. These will remain for reference during the transition period.
-
-For development implementation summaries, see [Dev Workflows](../dev-workflows/index.md).
+For development implementation summaries, see [Implementation Summaries](../dev-workflows/index.md).

@@ -6,18 +6,18 @@ Welcome to the Engineering section of NextPM, where we document the complete jou
 
 This section showcases the intersection of product management and software development, demonstrating how AI tools enhance both disciplines when building in public.
 
-### PM Workflows
+### Specifications
 
 Product specifications and feature planning documents. Each entry links PM thinking with actual implementation, providing:
 
 - **Feature Specs** - Complete product requirements and design decisions
-- **Implementation Timeline** - When features were started and completed
-- **Related Changes** - Links to actual code commits
-- **Lessons Learned** - Real insights from building with AI assistance
+- **Visual Timeline** - Animated progress tracking from draft to completion
+- **Related Changes** - Links to actual code commits with git integration
+- **AI-Native** - Built using Claude Code and spec-driven development
 
-[Explore PM Workflows →](pm-workflows/index.md)
+[Explore Specifications →](specs/index.md)
 
-### Dev Workflows
+### Implementation Summaries
 
 Development commit summaries documenting each code change. These entries show:
 
@@ -26,13 +26,13 @@ Development commit summaries documenting each code change. These entries show:
 - **How Built** - Technical details and AI assistance used
 - **Related Specs** - Links back to PM planning documents
 
-[Explore Dev Workflows →](dev-workflows/index.md)
+[Explore Implementation Summaries →](dev-workflows/index.md)
 
 ## The NextPM Approach
 
 ### Building in Public
 
-We document both the "what we plan" (PM Workflows) and "what we built" (Dev Workflows), creating a complete narrative of the development process.
+We document both the "what we plan" (Specifications) and "what we built" (Implementation Summaries), creating a complete narrative of the development process.
 
 ### AI-Augmented Development
 
@@ -70,6 +70,6 @@ Bidirectional links connect specs to commits, making it easy to:
 
 ## Recent Activity
 
-*Check the PM Workflows and Dev Workflows sections for the latest updates.*
+*Check the Specifications and Implementation Summaries sections for the latest updates.*
 
 **This section is actively maintained as NextPM evolves.**

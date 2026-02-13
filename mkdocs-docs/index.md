@@ -1,157 +1,104 @@
-# Welcome to NextPM 🤖
+# Welcome to NextPM 🚀
 
-**Next-generation Product Management with AI**
+**AI-Native Product Management Showcase**
 
 ## What is NextPM?
 
-NextPM is your practical guide to **10x your PM productivity** using AI tools. Whether you're curious about Claude, ChatGPT, Cursor, or GitHub Copilot, you'll find real workflows, reusable prompts, and honest case studies here.
+NextPM demonstrates **next-generation spec-driven development** with AI assistance. This site showcases cutting-edge PM workflows where specifications drive development, complete with visual timelines, real-time search, and automated tracking from idea to deployment.
 
-!!! tip "AI-Native Repository"
-    This project is built using the AI-augmented workflows it documents. It's a living example of PM-AI collaboration. See [AI-Native approach](about/ai-native.md).
+!!! tip "Living Laboratory"
+    This project uses itself as the development target - it's a **living demonstration** of AI-assisted spec-driven development. Every feature you see was built using the methodology it showcases.
 
-## 🎯 What You'll Find Here
+## 🎯 Explore the Showcase
 
-### [PM Workflows](engineering/pm-workflows/index.md)
-Step-by-step guides for common PM tasks with AI:
+### [📊 Interactive Dashboard](engineering/dashboard.md)
+Real-time search and analytics for all specifications:
 
-- **[Spec Writing](engineering/pm-workflows/spec-writing.md)** - Write PRDs, user stories, and one-pagers faster
-- **User Research** - Synthesize interviews and feedback with AI
-- **Feature Evaluation** - Score and prioritize with AI assistance
-- **Prototyping** - Create working demos without dev resources
+- **🔍 Advanced Search** - Full-text search across all specs
+- **🎛️ Smart Filtering** - By status, priority, category, and more
+- **📈 Live Statistics** - Real-time progress tracking
+- **🎨 Visual Interface** - Animated, responsive design
 
-### [Prompt Library](prompts/index.md)
-Copy-paste templates for your PM work:
+### [📝 Enhanced Specifications](engineering/specs/index.md)
+AI-enhanced specs with visual state management:
 
-- PRD templates
-- User story generators
-- Research synthesis prompts
-- Evaluation frameworks
-- And more...
+- **🎭 Visual State Badges** - Animated status indicators (📝 draft → 🚧 in-progress → 🎉 completed)
+- **⏱️ Development Timelines** - See real commits linked to each spec
+- **🔄 State History** - Complete evolution tracking
+- **🎯 Automated Publishing** - Source specs auto-enhance with timelines
 
-### [Examples & Case Studies](examples/case-studies.md)
-Real examples with measurable outcomes:
+### [🔧 Implementation Summaries](engineering/dev-workflows/index.md)
+Auto-generated development tracking:
 
-- Before/after comparisons
-- Time saved (hours → minutes)
-- Quality improvements
-- Honest lessons learned
+- **🤖 AI-Generated** - Automatically created from git commits
+- **🔗 Bidirectional Linking** - Specs ↔ commits ↔ summaries
+- **📊 Development Statistics** - Files changed, contributors, progress
+- **⚡ Real-time Updates** - Regenerated on every build
 
-### [Dev Workflows for PMs](engineering/dev-workflows/index.md)
-Learn enough dev to be dangerous:
+## 🌟 Key Features Demonstrated
 
-- Using Cursor without coding experience
-- GitHub Copilot for non-developers
-- Reading and understanding code
-- Building simple prototypes
+### **AI-Assisted Development**
+- **Spec-driven workflow** with Claude Code integration
+- **Visual timeline system** showing development progression
+- **Real-time search** with client-side indexing
+- **Automated commit tracking** linking specs to implementation
 
-## 🚀 Quick Start
+### **Enhanced User Experience**
+- **Interactive dashboard** with live statistics
+- **Responsive design** working on all devices
+- **Dark mode support** throughout the entire site
+- **Smooth animations** using CSS3 hardware acceleration
 
-### 1. Explore a Workflow
+### **Modern Architecture**
+- **Static site generation** with enhanced interactivity
+- **Build-time processing** for performance
+- **Framework-specific tooling** (`mkdocs-scripts/` for clear separation)
+- **Clean folder structure** with perfect source→published alignment
 
-Start with [Spec Writing with AI](engineering/pm-workflows/spec-writing.md) - it's the most impactful for most PMs.
+## 🚀 How It Works
 
-### 2. Try a Prompt
+```mermaid
+graph LR
+    A[engineering/specs/] --> B[mkdocs-scripts/build-specs.py]
+    B --> C[Visual Enhancement]
+    C --> D[mkdocs-docs/engineering/specs/]
+    D --> E[Website]
+    F[Git Commits] --> B
+    B --> G[Search Index]
+    B --> H[Dashboard Stats]
+```
 
-Copy a template from the [Prompt Library](prompts/index.md) and use it in Claude or ChatGPT.
+1. **PM writes specification** in `engineering/specs/YYYY-MM-DD-nn-name.md`
+2. **Enhanced build system** processes with state management and visual timelines
+3. **Developer commits code** with spec reference: `#2026-02-13-01`
+4. **System auto-generates** implementation summaries and commit timelines
+5. **Website displays** complete traceability from spec to deployment
 
-### 3. Share Your Results
+## 🎯 Perfect for Learning
 
-Did it work? How much time did you save? Let me know!
+### **Product Managers**
+- See how **spec-driven development** actually works in practice
+- Experience **AI-assisted PM workflows** in action
+- Learn **visual state management** for better spec tracking
 
-## 👥 Who Is This For?
+### **Developers**
+- Understand how **specs drive development** with real examples
+- See **git integration** creating automatic documentation
+- Experience **bidirectional linking** between specs and code
 
-- **Mid-Senior PMs** wanting to leverage AI in daily work
-- **Non-technical PMs** curious about prototyping
-- **Product Leaders** evaluating AI tools for their teams
-- **AI-curious PMs** looking for practical guidance
+### **AI Enthusiasts**
+- Explore **Claude Code integration** for spec-driven development
+- See **AI-enhanced build processes** in action
+- Learn **practical AI workflows** for software projects
 
-!!! note "No Coding Required"
-    Most content assumes zero coding knowledge. Dev-focused content is clearly marked.
+## 📖 About This Project
 
-## 🎓 Learning Philosophy
+NextPM represents the **future of AI-native product management**. It's both a showcase and a working example of how AI can transform traditional PM workflows into dynamic, visual, and highly automated processes.
 
-### Practical Over Theoretical
-Every guide includes real examples and actual prompts. No hand-waving.
+**Built with:** MkDocs Material, Claude Code assistance, GitHub Actions, Azure Static Web Apps
 
-### Honest About Limitations
-AI isn't magic. I'll tell you when traditional methods work better.
-
-### Learning in Public
-This is my journey learning AI-augmented PM work. Mistakes included.
-
-### Community-Oriented
-All content is free and open. Remix, share, and build on it.
-
-## 📊 What Results Can You Expect?
-
-Based on my own experience:
-
-| Task | Traditional Time | With AI | Time Saved |
-|------|------------------|---------|------------|
-| PRD (5-page) | 6-8 hours | 2-3 hours | **60%** |
-| User Stories (10) | 2 hours | 30 minutes | **75%** |
-| Research Synthesis | 4 hours | 1.5 hours | **60%** |
-| Competitive Analysis | 3 hours | 1 hour | **65%** |
-
-!!! warning "Your Mileage May Vary"
-    These are my results. Your outcomes depend on your context, tool proficiency, and task complexity.
-
-## 🛠️ AI Tools Covered
-
-- **Claude** (Anthropic) - My primary tool for writing and analysis
-- **ChatGPT** (OpenAI) - Great for brainstorming and research
-- **Cursor** - AI-powered code editor for PMs who want to prototype
-- **GitHub Copilot** - Code assistance for simple scripts and demos
-
-## 🗺️ Site Roadmap
-
-**Phase 1** (Current - Building)
-- Core PM workflows documented
-- 20+ prompt templates
-- 5 case studies with real data
-- Deploy to kangxh.com
-
-**Phase 2** (Next)
-- Interactive PM tools (spec generator, user story builder)
-- User accounts and saved prompts
-- Community contributions
-
-## 💡 How to Use This Site
-
-### For Quick Wins
-1. Go to [Prompt Library](prompts/index.md)
-2. Copy a template for your task
-3. Customize with your context
-4. Use in Claude/ChatGPT
-
-### For Deep Learning
-1. Read a [workflow guide](engineering/pm-workflows/index.md)
-2. Review the [case study](examples/case-studies.md)
-3. Try the prompts in the guide
-4. Iterate based on your results
-
-### For Understanding AI-Native Work
-1. Read [AI-Native approach](about/ai-native.md)
-2. Explore the [GitHub repository](https://github.com/YOUR_USERNAME/NextPM)
-3. See how this site was built with AI
-
-## 🤝 About
-
-Hi! I'm **Kang**, a Product Manager learning to 10x my productivity with AI tools.
-
-I'm not a developer (learning as I go!), but I've found AI tools transform how PMs work. This site documents my journey and shares what works.
-
-**Connect:**
-- Website: [kangxh.com](https://kangxh.com)
-- GitHub: [YOUR_USERNAME/NextPM](https://github.com/YOUR_USERNAME/NextPM)
-
-## 📖 Recent Additions
-
-!!! example "New Content"
-    - ✨ **Spec Writing Guide** - Complete workflow with prompts
-    - 🎯 **PRD Template** - Reusable prompt for product requirements
-    - 📊 **First Case Study** - NextPM project spec (meta!)
+**Architecture:** Static site with enhanced interactivity, build-time processing, client-side search
 
 ---
 
-**Ready to 10x your PM productivity?** Start with the [PM Workflows](engineering/pm-workflows/index.md) →
+**Ready to explore?** Start with the [📊 Interactive Dashboard](engineering/dashboard.md) or browse the [📝 Enhanced Specifications](engineering/specs/index.md)!

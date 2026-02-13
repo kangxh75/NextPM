@@ -14,6 +14,34 @@
             <div class="timeline-marker"></div>
             <div class="timeline-content">
                 <div class="commit-header">
+                    <span class="commit-hash">#cb4ec294</span>
+                    <span class="commit-date">2026-02-13</span>
+                </div>
+                <div class="commit-message">fix: update CI/CD workflows for mkdocs-scripts/ rename (#2026-02-13-01)</div>
+                <div class="commit-meta">
+                    <span class="commit-author">👤 Allen Kang (from Dev Box)</span>
+                    <span class="files-changed">📁 2 files changed</span>
+                </div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="commit-header">
+                    <span class="commit-hash">#5182f0e0</span>
+                    <span class="commit-date">2026-02-13</span>
+                </div>
+                <div class="commit-message">refactor: rename scripts/ to mkdocs-scripts/ for framework clarity (#2026-02-13-01)</div>
+                <div class="commit-meta">
+                    <span class="commit-author">👤 Allen Kang (from Dev Box)</span>
+                    <span class="files-changed">📁 9 files changed</span>
+                </div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="commit-header">
                     <span class="commit-hash">#f149d349</span>
                     <span class="commit-date">2026-02-13</span>
                 </div>
@@ -280,7 +308,7 @@ Implement a multi-phase enhancement that transforms static specs into dynamic, v
 ## References
 
 ### Internal Documents
-- [NextPM CLAUDE.md](../../CLAUDE.md) - Project guidelines
+- [NextPM CLAUDE.md](https://github.com/kangxh75/NextPM/blob/master/CLAUDE.md) - Project guidelines
 - [Original build-specs.py](https://github.com/kangxh75/NextPM/blob/master/scripts/build-specs.py)
 - [MkDocs Material Documentation](https://squidfunk.github.io/mkdocs-material/)
 

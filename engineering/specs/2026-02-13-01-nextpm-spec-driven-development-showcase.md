@@ -200,7 +200,7 @@ Implement a multi-phase enhancement that transforms static specs into dynamic, v
 ## References
 
 ### Internal Documents
-- [NextPM CLAUDE.md](../../CLAUDE.md) - Project guidelines
+- [NextPM CLAUDE.md](https://github.com/kangxh75/NextPM/blob/master/CLAUDE.md) - Project guidelines
 - [Original build-specs.py](https://github.com/kangxh75/NextPM/blob/master/scripts/build-specs.py)
 - [MkDocs Material Documentation](https://squidfunk.github.io/mkdocs-material/)
 

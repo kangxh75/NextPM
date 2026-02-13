@@ -2,6 +2,33 @@
 
 <div class="dashboard-container">
 
+## 🔍 Search & Filter
+
+<div class="search-section">
+    <div class="search-bar">
+        <input type="text" id="spec-search" placeholder="Search specifications..." class="search-input" />
+        <button id="clear-search" class="clear-button">Clear</button>
+    </div>
+    <div class="filter-row">
+        <select id="status-filter" class="filter-dropdown">
+            <option value="all">All Statuses</option>
+        </select>
+        <select id="priority-filter" class="filter-dropdown">
+            <option value="all">All Priorities</option>
+        </select>
+        <select id="category-filter" class="filter-dropdown">
+            <option value="all">All Categories</option>
+        </select>
+    </div>
+    <div class="search-stats">
+        <span id="search-stats">Showing 4 specifications</span>
+    </div>
+</div>
+
+<div id="search-results" class="search-results-container">
+    <!-- Search results will be populated here by JavaScript -->
+</div>
+
 ## 📈 Statistics
 
 <div class="stats-grid">
@@ -111,6 +138,7 @@
 </div>
 
 <!-- Dashboard JavaScript -->
+<script src="../../mkdocs-static/js/nextpm-search.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize dashboard animations

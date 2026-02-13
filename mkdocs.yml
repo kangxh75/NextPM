@@ -133,6 +133,9 @@ plugins:
 extra_css:
   - mkdocs-static/css/custom.css
 
+extra_javascript:
+  - mkdocs-static/js/nextpm-search.js
+
 extra:
   social:
     - icon: fontawesome/brands/github

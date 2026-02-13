@@ -377,6 +377,72 @@ _This section will be enhanced with AI-powered commit analysis in a future updat
 
     return generated_workflows
 
+def generate_search_index(spec_metadata_collection):
+    """Generate JSON search index for client-side search."""
+    search_index = []
+
+    for metadata in spec_metadata_collection:
+        # Read the original spec content for indexing
+        spec_path = Path('project/specs') / metadata['filename']
+        try:
+            with open(spec_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+
+            # Remove YAML frontmatter for content indexing
+            if content.startswith('---\n'):
+                end_marker = content.find('\n---\n', 4)
+                if end_marker != -1:
+                    content = content[end_marker + 5:]
+
+            # Extract title
+            title = extract_title_from_spec(spec_path)
+
+            # Create searchable content
+            searchable_content = f"{title} {content}".lower()
+
+            # Remove markdown formatting for better search
+            import re
+            searchable_content = re.sub(r'#+ ', '', searchable_content)  # Remove headers
+            searchable_content = re.sub(r'\*\*(.*?)\*\*', r'\1', searchable_content)  # Bold
+            searchable_content = re.sub(r'\*(.*?)\*', r'\1', searchable_content)  # Italic
+            searchable_content = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', searchable_content)  # Links
+
+            search_entry = {
+                'id': metadata.get('spec_id', ''),
+                'filename': metadata['filename'],
+                'title': title,
+                'status': metadata.get('status', 'draft'),
+                'priority': metadata.get('priority', 'medium'),
+                'category': metadata.get('category', 'nextpm-feature'),
+                'assignee': metadata.get('assignee', ''),
+                'estimated_hours': metadata.get('estimated_hours', 0),
+                'actual_hours': metadata.get('actual_hours', 0),
+                'demonstrates': metadata.get('demonstrates', []),
+                'content': searchable_content[:1000],  # Limit content for index size
+                'last_updated': metadata.get('last_updated', ''),
+                'git_commits': len(metadata.get('git_commits', {}).get('commits', [])),
+                'url': f'engineering/specs/{metadata["filename"]}'
+            }
+
+            search_index.append(search_entry)
+
+        except Exception as e:
+            print(f"Warning: Could not index {metadata['filename']}: {e}")
+
+    # Write search index to static file
+    search_index_path = Path('mkdocs-static/js/search-index.json')
+    search_index_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(search_index_path, 'w', encoding='utf-8') as f:
+        json.dump({
+            'generated': datetime.now().isoformat(),
+            'total_specs': len(search_index),
+            'index': search_index
+        }, f, indent=2)
+
+    print(f"Generated search index with {len(search_index)} entries")
+    return search_index_path
+
 def process_spec_content(content, filename):
     """Process spec content to fix broken links for MkDocs compatibility."""
     # Define link replacements/fixes
@@ -554,6 +620,33 @@ def generate_spec_dashboard(spec_metadata_collection):
 
 <div class="dashboard-container">
 
+## 🔍 Search & Filter
+
+<div class="search-section">
+    <div class="search-bar">
+        <input type="text" id="spec-search" placeholder="Search specifications..." class="search-input" />
+        <button id="clear-search" class="clear-button">Clear</button>
+    </div>
+    <div class="filter-row">
+        <select id="status-filter" class="filter-dropdown">
+            <option value="all">All Statuses</option>
+        </select>
+        <select id="priority-filter" class="filter-dropdown">
+            <option value="all">All Priorities</option>
+        </select>
+        <select id="category-filter" class="filter-dropdown">
+            <option value="all">All Categories</option>
+        </select>
+    </div>
+    <div class="search-stats">
+        <span id="search-stats">Showing {total_specs} specifications</span>
+    </div>
+</div>
+
+<div id="search-results" class="search-results-container">
+    <!-- Search results will be populated here by JavaScript -->
+</div>
+
 ## 📈 Statistics
 
 <div class="stats-grid">
@@ -635,6 +728,7 @@ def generate_spec_dashboard(spec_metadata_collection):
 </div>
 
 <!-- Dashboard JavaScript -->
+<script src="../../mkdocs-static/js/nextpm-search.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {{
     // Initialize dashboard animations
@@ -878,9 +972,10 @@ def main():
         else:
             print("No dev workflows generated (no commits found)")
 
-        # Step 7: Prepare search infrastructure (for future implementation)
-        print("\n7. Preparing search infrastructure...")
-        print("Search index generation: Ready for Phase 3 implementation")
+        # Step 7: Generate search index for client-side search
+        print("\n7. Generating search index...")
+        search_index_path = generate_search_index(spec_metadata)
+        print(f"Search index available at: {search_index_path}")
 
         print("\nEnhanced build completed successfully!")
         print(f"Published {len(spec_files)} specifications with visual timelines")

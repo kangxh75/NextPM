@@ -1,9 +1,22 @@
+---
+status: "draft"  # draft | review | approved | in-progress | completed
+priority: "medium"  # high | medium | low
+estimated_hours: 8
+actual_hours: 0
+assignee: "Kang"
+category: "nextpm-feature"  # nextpm-feature | demo-feature | learning
+demonstrates: ["spec-driven-development", "ai-assistance"]
+state_history:
+  - state: "draft"
+    date: "YYYY-MM-DD"
+    author: "Kang"
+    notes: "Initial spec creation"
+---
+
 # YYYY-MM-DD-nn [Feature Name]
 
-**Status:** 📝 Draft | 🚧 In Progress | ✅ Completed
 **Date:** YYYY-MM-DD
 **Version:** 1.0
-**Priority:** High | Medium | Low
 
 ## Overview
 

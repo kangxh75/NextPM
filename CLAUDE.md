@@ -15,20 +15,26 @@ NextPM is an **AI-Native PM Knowledge Hub** - a living laboratory for AI-augment
 # Install dependencies (first time setup)
 pip install -r requirements.txt
 
-# Serve documentation locally
-mkdocs serve
+# Serve documentation locally (with automated spec processing)
+python scripts/serve.py
 
-# Default port: http://localhost:8000
-# Use different port if needed: mkdocs serve -a localhost:8001
+# Alternative: Manual approach
+python scripts/build-specs.py && mkdocs serve
 
-# Build static site (outputs to mkdocs-site/)
-mkdocs build
+# Default port: http://localhost:8002
+# Use different port if needed: python scripts/serve.py -a localhost:8001
+
+# Build static site (with automated spec processing)
+python scripts/build.py
 
 # Build with strict mode (fails on warnings - used in CI/CD)
-mkdocs build --strict
+python scripts/build.py --strict
 
 # Clean build directory
 rm -rf mkdocs-site/
+
+# Build only specifications (for testing)
+python scripts/build-specs.py
 ```
 
 ## Code Architecture
@@ -65,18 +71,24 @@ NextPM/
 
 1. **mkdocs- Prefix**: All MkDocs-related folders use `mkdocs-` prefix for clarity and root folder hygiene.
 
-2. **Two-Folder Strategy**:
-   - `/project/`: Working artifacts (specs, tasks, templates) - Git-tracked but not published
-   - `/mkdocs-docs/`: Website content (summaries) - Published to kangxh.com
-   - Specs live in `/project/specs/` with summaries in `/mkdocs-docs/engineering/pm-workflows/`
+2. **Single-Source-of-Truth Strategy**:
+   - `/project/specs/`: Single source of truth for all specifications - published directly to website
+   - `/mkdocs-docs/`: Website content (generated specs + handwritten pages) - Published to kangxh.com
+   - Specs are automatically copied and processed during build - no manual duplication required
 
-3. **Dual Content Structure**:
+3. **Automated Publishing**:
+   - Build process automatically copies specs from `/project/specs/` to `/mkdocs-docs/engineering/specs/`
+   - Navigation is auto-generated based on available spec files
+   - Internal links are processed to work correctly in website context
+   - No manual website summary creation required
+
+4. **Dual Content Structure**:
    - Content exists in both root level (`/examples/`, `/prompts/`) and under `/mkdocs-docs/`
    - Root level folders contain actual working content
    - `/mkdocs-docs/` folders contain website-optimized versions
    - AI context lives in `/ai-context/` for assistant onboarding
 
-4. **Engineering History Tracking** (Feature #2026-02-09-01):
+5. **Engineering History Tracking** (Feature #2026-02-09-01):
    - Navigation reorganized under "Engineering" parent section
    - PM Workflows: What to build (specifications)
    - Dev Workflows: What was built (commit summaries)
@@ -86,13 +98,14 @@ NextPM/
 
 The site uses nested navigation under "Engineering":
 - Engineering
-  - PM Workflows (specifications)
+  - Specs (auto-published from project/specs/)
+  - PM Workflows (Legacy) (manually created summaries - deprecated)
   - Dev Workflows (implementation summaries)
 - Prompt Library
 - Examples
 - About
 
-All navigation is defined in `mkdocs.yml`.
+All navigation is defined in `mkdocs.yml` and specs navigation is auto-generated during build.
 
 ## Important Patterns and Conventions
 
@@ -121,13 +134,14 @@ Examples:
 - `2026-02-09-1200-engineering-history-implementation.md`
 - `2026-02-09-1530-bugfix-navigation.md`
 
-### Documentation Workflow
+### Documentation Workflow (Simplified)
 
-When implementing a feature:
+**Single-Source-of-Truth Workflow** - Specs are automatically published to website:
 
 1. **Create PM Spec** in `/project/specs/YYYY-MM-DD-nn-feature-name.md`
    - Use template from `/project/templates/pm-workflow-spec-template.md`
    - Include version number and Change History section
+   - **Spec is automatically published to website during build**
 
 2. **Create Task Breakdown** in `/project/tasks/YYYY-MM-DD-nn-feature-name-tasks.md`
 
@@ -136,16 +150,19 @@ When implementing a feature:
    git commit -m "feat: implement feature (#2026-02-09-01)"
    ```
 
-4. **Create PM Workflow Summary** in `/mkdocs-docs/engineering/pm-workflows/YYYY-MM-DD-nn-feature-name.md`
-   - Brief overview linking to full spec on GitHub
-   - Use template from `/project/templates/pm-workflow-spec-template.md`
-
-5. **Create Dev Workflow Summary** in `/mkdocs-docs/engineering/dev-workflows/YYYY-MM-DD-HHMM-implementation-name.md`
+4. **Create Dev Workflow Summary** in `/mkdocs-docs/engineering/dev-workflows/YYYY-MM-DD-HHMM-implementation-name.md`
    - Document commit hash, files changed, key decisions
-   - Link back to PM Workflow spec
+   - Link back to published spec (auto-published from project/specs/)
    - Use template from `/project/templates/dev-workflow-commit-summary-template.md`
 
-6. **Update mkdocs.yml** navigation to include new pages
+**What's Automated:**
+- Specs are automatically copied from `project/specs/` to website during build
+- Navigation entries are automatically generated based on available specs
+- Internal links are processed for website compatibility
+- No manual website summary creation required
+
+**Legacy Workflow (Deprecated):**
+The previous workflow required manual creation of website summaries in `/mkdocs-docs/engineering/pm-workflows/`. These remain visible as "PM Workflows (Legacy)" but new specs should only be created in `project/specs/`.
 
 ### Version Tracking
 
@@ -169,26 +186,32 @@ Specs use **Change History** section for version tracking:
 - Always use conventional commits: `feat:`, `fix:`, `docs:`, `refactor:`, etc.
 - Reference spec ID in commit message: `(#YYYY-MM-DD-nn)`
 
-**Git Hooks** (Spec Tracking):
+## Build Process
 
-The repository includes git hooks to track which spec changes relate to:
+### Local Development
 
-1. **Install hooks** (first time setup):
-   ```bash
-   ./scripts/install-git-hooks.sh
-   ```
+Use the provided wrapper scripts for automated spec processing:
 
-2. **Pre-push hook**: Prompts before each push to specify related spec
-   - Shows numbered list of 5 most recent specs
-   - Press ENTER for default (newest), or type a number (1-5) to select
-   - Type full spec ID if not in list, or 'no' to skip
-   - Helps maintain proper documentation tracking
+```bash
+# Serve documentation locally (auto-builds specs first)
+python scripts/serve.py
 
-3. **Post-push hook**: Reminds you to update workflow documentation
-   - PM Workflow: `/mkdocs-docs/engineering/pm-workflows/[spec-id].md`
-   - Dev Workflow: `/mkdocs-docs/engineering/dev-workflows/[timestamp]-*.md`
+# Build static site (auto-builds specs first)
+python scripts/build.py
 
-**Hook Location**: Hooks are stored in `scripts/git-hooks/` and installed to `.git/hooks/`
+# Build with strict mode (fails on warnings - used in CI/CD)
+python scripts/build.py --strict
+
+# Build only specifications (for testing)
+python scripts/build-specs.py
+```
+
+### CI/CD Pipeline
+
+The GitHub Actions workflow automatically:
+1. Runs `python scripts/build-specs.py` to process specifications
+2. Runs `mkdocs build --strict` to build the site
+3. Deploys to Azure Static Web Apps on successful build
 
 ## Tech Stack
 
@@ -202,21 +225,28 @@ The repository includes git hooks to track which spec changes relate to:
 
 1. **Local Testing**:
    ```bash
-   mkdocs serve
-   # Visit http://localhost:8000
+   python scripts/serve.py
+   # Visit http://localhost:8002
    # Test navigation, links, and formatting
+   # Specs are auto-built and included
    ```
 
 2. **Strict Mode Build** (CI/CD uses this):
    ```bash
-   mkdocs build --strict
+   python scripts/build.py --strict
    # Fails on any warnings (broken links, missing files)
    ```
 
-3. **Link Validation**:
+3. **Specification Processing**:
+   ```bash
+   python scripts/build-specs.py
+   # Tests spec copying, link processing, and navigation generation
+   ```
+
+4. **Link Validation**:
    - All internal links must work in strict mode
-   - Use relative paths for internal links
-   - Website links to full specs use GitHub URLs
+   - Spec internal links are auto-processed for website compatibility
+   - Website links to external resources (GitHub) are preserved
 
 ## File Editing Guidelines
 
@@ -225,23 +255,27 @@ The repository includes git hooks to track which spec changes relate to:
 - Check for existing placeholders before creating new pages
 
 ### When Editing mkdocs.yml
-- Maintain navigation hierarchy (Engineering > PM/Dev Workflows)
-- Keep navigation order consistent (oldest to newest specs)
-- Test with `mkdocs build --strict` after changes
+- Maintain navigation hierarchy (Engineering > Specs/PM Workflows (Legacy)/Dev Workflows)
+- **Note**: Spec navigation is auto-generated - manual editing will be overwritten during build
+- Keep navigation order consistent for non-auto-generated sections
+- Test with `python scripts/build.py --strict` after changes
 
 ### When Creating New Pages
-1. Create full spec in `/project/specs/` first
-2. Create summary in `/mkdocs-docs/engineering/pm-workflows/` or `dev-workflows/`
-3. Update `mkdocs.yml` navigation
-4. Test locally before committing
+1. **For Specifications**: Create directly in `/project/specs/` using proper naming convention
+   - File will be automatically included in website during next build
+   - No manual navigation updates required
+2. **For Other Pages**: Create in appropriate `/mkdocs-docs/` subdirectory
+3. Update `mkdocs.yml` navigation for non-spec pages
+4. Test locally with `python scripts/serve.py` before committing
 
 ## AI-Native Philosophy
 
-This repository demonstrates "building in public" principles:
-- Every feature has a PM spec (planning phase)
+This repository demonstrates "building in public" principles with automated publishing:
+- Every feature has a PM spec (planning phase) - automatically published to website
 - Every commit has a Dev Workflow summary (implementation phase)
 - Complete traceability from idea → spec → code → deployment
-- Documentation created as byproduct of regular development
+- Documentation created as byproduct of regular development, not separate manual process
+- Single-source-of-truth approach eliminates duplication and sync issues
 - AI assistance is explicitly acknowledged in Dev Workflows
 
 ## CI/CD Pipeline
@@ -253,9 +287,10 @@ Located in `.github/workflows/`:
 
 ## Getting Help
 
-- **Documentation Issues**: Run `mkdocs serve` and check http://localhost:8000
-- **Build Failures**: Run `mkdocs build --strict` to see specific errors
-- **Navigation Issues**: Check `mkdocs.yml` navigation structure
+- **Documentation Issues**: Run `python scripts/serve.py` and check http://localhost:8000
+- **Build Failures**: Run `python scripts/build.py --strict` to see specific errors
+- **Spec Processing Issues**: Run `python scripts/build-specs.py` to test spec automation
+- **Navigation Issues**: Check `mkdocs.yml` navigation structure (specs are auto-generated)
 - **Link Errors**: Use strict mode to identify broken links
 
 ---

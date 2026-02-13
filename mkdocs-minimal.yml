@@ -1,0 +1,16 @@
+site_name: NextPM Test
+docs_dir: mkdocs-docs
+site_dir: mkdocs-site-test
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+
+nav:
+  - Home: index.md
+  - Engineering:
+      - Overview: engineering/index.md
+      - Test Page: engineering/specs/index.md
+  - About: about/project.md

@@ -27,7 +27,7 @@ jobs:
 
     - name: Build specifications
       run: |
-        python scripts/build-specs.py
+        python mkdocs-scripts/build-specs.py
 
     - name: Build MkDocs site
       run: |

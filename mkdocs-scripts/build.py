@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Build wrapper that runs build-specs.py before building the site.
-Usage: python scripts/build.py [additional mkdocs build arguments]
+Usage: python mkdocs-scripts/build.py [additional mkdocs build arguments]
 """
 
 import subprocess
@@ -18,7 +18,7 @@ def main():
     print("Building specifications...")
     try:
         # Run build-specs.py
-        result = subprocess.run([sys.executable, "scripts/build-specs.py"], check=True)
+        result = subprocess.run([sys.executable, "mkdocs-scripts/build-specs.py"], check=True)
         print("Specifications built successfully!")
     except subprocess.CalledProcessError as e:
         print(f"Failed to build specifications: {e}")

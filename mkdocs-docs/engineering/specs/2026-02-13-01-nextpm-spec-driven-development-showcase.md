@@ -14,6 +14,20 @@
             <div class="timeline-marker"></div>
             <div class="timeline-content">
                 <div class="commit-header">
+                    <span class="commit-hash">#f149d349</span>
+                    <span class="commit-date">2026-02-13</span>
+                </div>
+                <div class="commit-message">refactor: clean build artifacts and verify runtime dependencies (#2026-02-13-01)</div>
+                <div class="commit-meta">
+                    <span class="commit-author">👤 Allen Kang (from Dev Box)</span>
+                    <span class="files-changed">📁 2 files changed</span>
+                </div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="commit-header">
                     <span class="commit-hash">#1573c44f</span>
                     <span class="commit-date">2026-02-13</span>
                 </div>

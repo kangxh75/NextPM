@@ -16,25 +16,25 @@ NextPM is an **AI-Native PM Knowledge Hub** - a living laboratory for AI-augment
 pip install -r requirements.txt
 
 # Serve documentation locally (with automated spec processing)
-python scripts/serve.py
+python mkdocs-scripts/serve.py
 
 # Alternative: Manual approach
-python scripts/build-specs.py && mkdocs serve
+python mkdocs-scripts/build-specs.py && mkdocs serve
 
 # Default port: http://localhost:8002
-# Use different port if needed: python scripts/serve.py -a localhost:8001
+# Use different port if needed: python mkdocs-scripts/serve.py -a localhost:8001
 
 # Build static site (with automated spec processing)
-python scripts/build.py
+python mkdocs-scripts/build.py
 
 # Build with strict mode (fails on warnings - used in CI/CD)
-python scripts/build.py --strict
+python mkdocs-scripts/build.py --strict
 
 # Clean build directory
 rm -rf mkdocs-site/
 
 # Build only specifications (for testing)
-python scripts/build-specs.py
+python mkdocs-scripts/build-specs.py
 ```
 
 ## Code Architecture
@@ -60,7 +60,7 @@ NextPM/
 ├── examples/             # Real PM artifacts (root level)
 ├── prompts/              # Prompt library (root level)
 ├── meta/                 # Project meta-documentation
-├── scripts/              # Git hooks and utility scripts
+├── mkdocs-scripts/              # Git hooks and utility scripts
 ├── mkdocs.yml            # MkDocs configuration (navigation, theme)
 ├── requirements.txt      # Python dependencies
 ├── venv/                 # Python virtual environment
@@ -194,22 +194,22 @@ Use the provided wrapper scripts for automated spec processing:
 
 ```bash
 # Serve documentation locally (auto-builds specs first)
-python scripts/serve.py
+python mkdocs-scripts/serve.py
 
 # Build static site (auto-builds specs first)
-python scripts/build.py
+python mkdocs-scripts/build.py
 
 # Build with strict mode (fails on warnings - used in CI/CD)
-python scripts/build.py --strict
+python mkdocs-scripts/build.py --strict
 
 # Build only specifications (for testing)
-python scripts/build-specs.py
+python mkdocs-scripts/build-specs.py
 ```
 
 ### CI/CD Pipeline
 
 The GitHub Actions workflow automatically:
-1. Runs `python scripts/build-specs.py` to process specifications
+1. Runs `python mkdocs-scripts/build-specs.py` to process specifications
 2. Runs `mkdocs build --strict` to build the site
 3. Deploys to Azure Static Web Apps on successful build
 
@@ -225,7 +225,7 @@ The GitHub Actions workflow automatically:
 
 1. **Local Testing**:
    ```bash
-   python scripts/serve.py
+   python mkdocs-scripts/serve.py
    # Visit http://localhost:8002
    # Test navigation, links, and formatting
    # Specs are auto-built and included
@@ -233,13 +233,13 @@ The GitHub Actions workflow automatically:
 
 2. **Strict Mode Build** (CI/CD uses this):
    ```bash
-   python scripts/build.py --strict
+   python mkdocs-scripts/build.py --strict
    # Fails on any warnings (broken links, missing files)
    ```
 
 3. **Specification Processing**:
    ```bash
-   python scripts/build-specs.py
+   python mkdocs-scripts/build-specs.py
    # Tests spec copying, link processing, and navigation generation
    ```
 
@@ -258,7 +258,7 @@ The GitHub Actions workflow automatically:
 - Maintain navigation hierarchy (Engineering > Specs/PM Workflows (Legacy)/Dev Workflows)
 - **Note**: Spec navigation is auto-generated - manual editing will be overwritten during build
 - Keep navigation order consistent for non-auto-generated sections
-- Test with `python scripts/build.py --strict` after changes
+- Test with `python mkdocs-scripts/build.py --strict` after changes
 
 ### When Creating New Pages
 1. **For Specifications**: Create directly in `/engineering/specs/` using proper naming convention
@@ -266,7 +266,7 @@ The GitHub Actions workflow automatically:
    - No manual navigation updates required
 2. **For Other Pages**: Create in appropriate `/mkdocs-docs/` subdirectory
 3. Update `mkdocs.yml` navigation for non-spec pages
-4. Test locally with `python scripts/serve.py` before committing
+4. Test locally with `python mkdocs-scripts/serve.py` before committing
 
 ## AI-Native Philosophy
 
@@ -287,9 +287,9 @@ Located in `.github/workflows/`:
 
 ## Getting Help
 
-- **Documentation Issues**: Run `python scripts/serve.py` and check http://localhost:8000
-- **Build Failures**: Run `python scripts/build.py --strict` to see specific errors
-- **Spec Processing Issues**: Run `python scripts/build-specs.py` to test spec automation
+- **Documentation Issues**: Run `python mkdocs-scripts/serve.py` and check http://localhost:8000
+- **Build Failures**: Run `python mkdocs-scripts/build.py --strict` to see specific errors
+- **Spec Processing Issues**: Run `python mkdocs-scripts/build-specs.py` to test spec automation
 - **Navigation Issues**: Check `mkdocs.yml` navigation structure (specs are auto-generated)
 - **Link Errors**: Use strict mode to identify broken links
 

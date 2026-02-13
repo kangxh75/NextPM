@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Development server wrapper that runs build-specs.py before starting MkDocs serve.
-Usage: python scripts/serve.py [additional mkdocs serve arguments]
+Usage: python mkdocs-scripts/serve.py [additional mkdocs serve arguments]
 """
 
 import subprocess
@@ -18,7 +18,7 @@ def main():
     print("Building specifications...")
     try:
         # Run build-specs.py
-        result = subprocess.run([sys.executable, "scripts/build-specs.py"], check=True)
+        result = subprocess.run([sys.executable, "mkdocs-scripts/build-specs.py"], check=True)
         print("Specifications built successfully!")
     except subprocess.CalledProcessError as e:
         print(f"Failed to build specifications: {e}")

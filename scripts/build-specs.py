@@ -3,7 +3,7 @@
 Enhanced NextPM spec automation with state management and visual timeline support.
 
 This script:
-1. Scans project/specs/ for all .md files (except README.md)
+1. Scans engineering/specs/ for all .md files (except README.md)
 2. Parses YAML frontmatter for spec state management
 3. Copies specs to mkdocs-docs/engineering/specs/ with enhanced processing
 4. Injects visual timeline data and animations
@@ -332,7 +332,7 @@ def auto_generate_dev_workflow(spec_metadata):
             continue  # Skip existing workflows for now
 
         # Generate workflow content
-        title = extract_title_from_spec(Path('project/specs') / metadata['filename'])
+        title = extract_title_from_spec(Path('engineering/specs') / metadata['filename'])
 
         workflow_content = f"""# {spec_id} Implementation Summary
 
@@ -383,7 +383,7 @@ def generate_search_index(spec_metadata_collection):
 
     for metadata in spec_metadata_collection:
         # Read the original spec content for indexing
-        spec_path = Path('project/specs') / metadata['filename']
+        spec_path = Path('engineering/specs') / metadata['filename']
         try:
             with open(spec_path, 'r', encoding='utf-8') as f:
                 content = f.read()
@@ -549,8 +549,8 @@ def process_spec_content(content, filename):
     return processed_content
 
 def copy_specs_to_docs():
-    """Copy spec files from project/specs/ to mkdocs-docs/engineering/specs/ with enhanced processing."""
-    source_dir = Path('project/specs')
+    """Copy spec files from engineering/specs/ to mkdocs-docs/engineering/specs/ with enhanced processing."""
+    source_dir = Path('engineering/specs')
     target_dir = Path('mkdocs-docs/engineering/specs')
 
     if not source_dir.exists():
@@ -696,7 +696,7 @@ def generate_spec_dashboard(spec_metadata_collection):
             spec.get('status', 'draft'),
             spec.get('priority', 'medium')
         )
-        title = extract_title_from_spec(Path('project/specs') / spec['filename'])
+        title = extract_title_from_spec(Path('engineering/specs') / spec['filename'])
 
         content += f"""    <div class="activity-item">
         <div class="activity-header">
@@ -768,7 +768,7 @@ def generate_spec_navigation(spec_files, spec_metadata_collection):
     sorted_files = sorted(spec_files, key=get_spec_sort_key)
 
     for filename in sorted_files:
-        source_path = Path('project/specs') / filename
+        source_path = Path('engineering/specs') / filename
         title = extract_title_from_spec(source_path)
 
         # Add status indicator to navigation title
@@ -838,7 +838,7 @@ This section contains the complete PM specifications for NextPM features. These 
 
 ## About These Specs
 
-- **Source**: Files are automatically published from `project/specs/` directory
+- **Source**: Files are automatically published from `engineering/specs/` directory
 - **Format**: Each spec follows the NextPM specification template
 - **Workflow**: PMs work directly on these files - no manual copying required
 - **Navigation**: This page and navigation are auto-generated during build
@@ -907,7 +907,7 @@ This section contains the complete PM specifications for NextPM features. These 
 
 ## About These Specs
 
-- **Source**: Files are automatically published from `project/specs/` directory
+- **Source**: Files are automatically published from `engineering/specs/` directory
 - **Format**: Each spec follows the NextPM specification template
 - **Workflow**: PMs work directly on these files - no manual copying required
 - **Navigation**: This page and navigation are auto-generated during build

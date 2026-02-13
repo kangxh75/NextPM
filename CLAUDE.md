@@ -51,7 +51,7 @@ NextPM/
 │   ├── examples/         # Real PM artifacts and case studies
 │   └── about/            # About pages
 ├── mkdocs-static/        # Static assets (CSS, images, etc.)
-├── project/              # Working artifacts (NOT published to website)
+├── engineering/          # Working artifacts (NOT published to website)
 │   ├── specs/            # Full PM specifications (source of truth)
 │   ├── tasks/            # Task breakdowns for features
 │   ├── validations/      # Test reports and validation docs
@@ -72,12 +72,12 @@ NextPM/
 1. **mkdocs- Prefix**: All MkDocs-related folders use `mkdocs-` prefix for clarity and root folder hygiene.
 
 2. **Single-Source-of-Truth Strategy**:
-   - `/project/specs/`: Single source of truth for all specifications - published directly to website
+   - `/engineering/specs/`: Single source of truth for all specifications - published directly to website
    - `/mkdocs-docs/`: Website content (generated specs + handwritten pages) - Published to kangxh.com
    - Specs are automatically copied and processed during build - no manual duplication required
 
 3. **Automated Publishing**:
-   - Build process automatically copies specs from `/project/specs/` to `/mkdocs-docs/engineering/specs/`
+   - Build process automatically copies specs from `/engineering/specs/` to `/mkdocs-docs/engineering/specs/`
    - Navigation is auto-generated based on available spec files
    - Internal links are processed to work correctly in website context
    - No manual website summary creation required
@@ -138,12 +138,12 @@ Examples:
 
 **Single-Source-of-Truth Workflow** - Specs are automatically published to website:
 
-1. **Create PM Spec** in `/project/specs/YYYY-MM-DD-nn-feature-name.md`
-   - Use template from `/project/templates/pm-workflow-spec-template.md`
+1. **Create PM Spec** in `/engineering/specs/YYYY-MM-DD-nn-feature-name.md`
+   - Use template from `/engineering/templates/pm-workflow-spec-template.md`
    - Include version number and Change History section
    - **Spec is automatically published to website during build**
 
-2. **Create Task Breakdown** in `/project/tasks/YYYY-MM-DD-nn-feature-name-tasks.md`
+2. **Create Task Breakdown** in `/engineering/tasks/YYYY-MM-DD-nn-feature-name-tasks.md`
 
 3. **Implement Feature** and commit with spec ID reference:
    ```bash
@@ -153,16 +153,16 @@ Examples:
 4. **Create Dev Workflow Summary** in `/mkdocs-docs/engineering/dev-workflows/YYYY-MM-DD-HHMM-implementation-name.md`
    - Document commit hash, files changed, key decisions
    - Link back to published spec (auto-published from project/specs/)
-   - Use template from `/project/templates/dev-workflow-commit-summary-template.md`
+   - Use template from `/engineering/templates/dev-workflow-commit-summary-template.md`
 
 **What's Automated:**
-- Specs are automatically copied from `project/specs/` to website during build
+- Specs are automatically copied from `engineering/specs/` to website during build
 - Navigation entries are automatically generated based on available specs
 - Internal links are processed for website compatibility
 - No manual website summary creation required
 
 **Legacy Workflow (Deprecated):**
-The previous workflow required manual creation of website summaries in `/mkdocs-docs/engineering/pm-workflows/`. These remain visible as "PM Workflows (Legacy)" but new specs should only be created in `project/specs/`.
+The previous workflow required manual creation of website summaries in `/mkdocs-docs/engineering/pm-workflows/`. These remain visible as "PM Workflows (Legacy)" but new specs should only be created in `engineering/specs/`.
 
 ### Version Tracking
 
@@ -261,7 +261,7 @@ The GitHub Actions workflow automatically:
 - Test with `python scripts/build.py --strict` after changes
 
 ### When Creating New Pages
-1. **For Specifications**: Create directly in `/project/specs/` using proper naming convention
+1. **For Specifications**: Create directly in `/engineering/specs/` using proper naming convention
    - File will be automatically included in website during next build
    - No manual navigation updates required
 2. **For Other Pages**: Create in appropriate `/mkdocs-docs/` subdirectory

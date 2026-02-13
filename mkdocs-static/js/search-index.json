@@ -1,5 +1,5 @@
 {
-  "generated": "2026-02-13T17:14:16.465805",
+  "generated": "2026-02-13T17:23:17.232681",
   "total_specs": 4,
   "index": [
     {
@@ -14,7 +14,7 @@
       "actual_hours": 0,
       "demonstrates": [],
       "content": "0.00 project start - nextpm ai-native knowledge hub 0.00 project start - nextpm ai-native knowledge hub\n\nstatus: \u2705 completed\ndate: 2025-01-31 to 2026-02-04\nversion: 0.1.0 - foundation phase\n\noverview\n\nnextpm is an ai-native knowledge hub designed to help product managers 10x their productivity using ai tools. this spec documents the initial project setup, architecture decisions, and implementation of the foundational infrastructure.\n\nproblem\n\nfor pms:\n- ai tools (claude, chatgpt, cursor) are powerful but lack structured guidance for pm-specific workflows\n- no centralized resource for prompt templates and best practices for pm work\n- pms struggle to \"speak dev\" and prototype ideas without extensive coding knowledge\n- scattered knowledge about ai-augmented pm practices\n\nfor ai assistants:\n- most repositories lack sufficient context for effective collaboration\n- inconsistent conventions lead to friction and rework\n- no clear documentation of project goals, architecture, or patterns\n- cont",
-      "last_updated": "2026-02-13T17:14:14.938198",
+      "last_updated": "2026-02-13T17:23:15.881350",
       "git_commits": 0,
       "url": "engineering/specs/0.00-project-start.md"
     },
@@ -30,7 +30,7 @@
       "actual_hours": 0,
       "demonstrates": [],
       "content": "2026-02-09-01 engineering history tracking system 2026-02-09-01 engineering history tracking system\n\nstatus: \ud83d\udcdd draft\ndate: 2026-02-09\nversion: 1.1\npriority: high\n\noverview\n\ncreate a comprehensive engineering history tracking system that links pm specs with code changes, providing a complete audit trail of nextpm's evolution. this feature will reorganize navigation under \"engineering\" to showcase the development process and create templates for consistent change documentation.\n\nproblem\n\ncurrent state:\n- pm workflows and dev workflows are separate top-level menu items\n- no formal tracking of how specs relate to actual code changes\n- no standardized format for documenting commits/changes\n- difficult to see the connection between \"what we planned\" (specs) and \"what we built\" (commits)\n- missing the meta-narrative of building nextpm itself\n\npain points:\n- can't easily trace a feature from spec \u2192 implementation \u2192 deployment\n- no audit trail for future reference or case studies\n- navigation d",
-      "last_updated": "2026-02-13T17:14:15.141241",
+      "last_updated": "2026-02-13T17:23:16.047421",
       "git_commits": 2,
       "url": "engineering/specs/2026-02-09-01-engineering-history-tracking.md"
     },
@@ -46,7 +46,7 @@
       "actual_hours": 0,
       "demonstrates": [],
       "content": "2026-02-10-01 site authentication 2026-02-10-01 site authentication\n\nstatus: \u2705 implemented\ndate: 2026-02-10\nversion: 2.0\npriority: high\n\noverview\n\nimplement authentication for the nextpm website to protect the prompt library while keeping all other content public including engineering documentation. the solution uses azure ad (microsoft entra id) oauth-based authentication for secure, enterprise-grade access control.\n\nproblem\n\ncurrent state:\n\n- nextpm website is completely public and accessible to anyone\n- prompt library represents valuable intellectual property with no protection\n- no authentication or access control exists\n- azure static web apps resource is deployed but has no authentication configured\n\npain points:\n\n- cannot protect prompt library templates and examples\n- prompts represent curated intellectual property that should be restricted\n- no way to track who is accessing the prompt library\n- public content (home, engineering, examples, about pages) should remain open for te",
-      "last_updated": "2026-02-13T17:14:15.454154",
+      "last_updated": "2026-02-13T17:23:16.289378",
       "git_commits": 8,
       "url": "engineering/specs/2026-02-10-01-authentication.md"
     },
@@ -67,8 +67,8 @@
         "state-management"
       ],
       "content": "2026-02-13-01 nextpm spec-driven development showcase \n2026-02-13-01 nextpm spec-driven development showcase\n\ndate: 2026-02-13\nversion: 1.0\n\noverview\n\ntransform nextpm into a comprehensive demonstration of ai-era spec-driven development. this feature showcases ai-vibe coding practices with claude code, github copilot, and other ai tools by making the website itself both the documentation platform and the development target.\n\nproblem\n\ncurrent state:\n- nextpm exists as a static documentation hub with basic spec automation\n- no visual representation of spec evolution or development progress\n- limited real-time demonstration of spec-driven development workflow\n- no interactive features to showcase the iterative nature of ai-assisted development\n\npain points:\n- visitors cannot see the dynamic nature of spec-driven development\n- no visual storytelling showing how specs evolve from draft to completion\n- missing demonstration of ai-native development practices\n- static presentation doesn't ref",
-      "last_updated": "2026-02-13T17:14:16.112647",
-      "git_commits": 3,
+      "last_updated": "2026-02-13T17:23:16.836067",
+      "git_commits": 4,
       "url": "engineering/specs/2026-02-13-01-nextpm-spec-driven-development-showcase.md"
     }
   ]

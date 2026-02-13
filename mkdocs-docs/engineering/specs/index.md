@@ -4,7 +4,7 @@ This section contains the complete PM specifications for NextPM features. These 
 
 ## About These Specs
 
-- **Source**: Files are automatically published from `project/specs/` directory
+- **Source**: Files are automatically published from `engineering/specs/` directory
 - **Format**: Each spec follows the NextPM specification template
 - **Workflow**: PMs work directly on these files - no manual copying required
 - **Navigation**: This page and navigation are auto-generated during build

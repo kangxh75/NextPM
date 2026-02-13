@@ -14,6 +14,20 @@
             <div class="timeline-marker"></div>
             <div class="timeline-content">
                 <div class="commit-header">
+                    <span class="commit-hash">#a1ee4624</span>
+                    <span class="commit-date">2026-02-13</span>
+                </div>
+                <div class="commit-message">fix: resolve broken links for CI/CD deployment (#2026-02-13-01)</div>
+                <div class="commit-meta">
+                    <span class="commit-author">👤 Allen Kang (from Dev Box)</span>
+                    <span class="files-changed">📁 7 files changed</span>
+                </div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="commit-header">
                     <span class="commit-hash">#cb4ec294</span>
                     <span class="commit-date">2026-02-13</span>
                 </div>

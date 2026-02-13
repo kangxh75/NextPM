@@ -67,14 +67,8 @@ nav:
           - 📝 0.00 Project Start - NextPM AI-Native Knowledge Hub: engineering/specs/0.00-project-start.md
           - 📝 2026-02-09-01 Engineering History Tracking System: engineering/specs/2026-02-09-01-engineering-history-tracking.md
           - 📝 2026-02-10-01 Site Authentication: engineering/specs/2026-02-10-01-authentication.md
-          - 🚧 2026-02-13-01 NextPM Spec-Driven Development Showcase: engineering/specs/2026-02-13-01-nextpm-spec-driven-development-showcase.md
-      - PM Workflows (Legacy):
-          - Overview: engineering/pm-workflows/index.md
-          - 0.00 Project Start: engineering/pm-workflows/0.00-project-start.md
-          - 2026-02-09-01 Engineering History: engineering/pm-workflows/2026-02-09-01-engineering-history.md
-          - 2026-02-10-01 Authentication: engineering/pm-workflows/2026-02-10-01-authentication.md
-      - Dev Workflows:
-          - Overview: engineering/dev-workflows/index.md
+          - 🎉 2026-02-13-01 NextPM Spec-Driven Development Showcase: engineering/specs/2026-02-13-01-nextpm-spec-driven-development-showcase.md
+      - Implementation Summaries: engineering/dev-workflows/index.md
   - About:
       - Project: about/project.md
       - AI-Native: about/ai-native.md

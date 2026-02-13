@@ -37,11 +37,11 @@
         <div class="stat-label">Total Specs</div>
     </div>
     <div class="stat-card">
-        <div class="stat-number">0</div>
+        <div class="stat-number">1</div>
         <div class="stat-label">Completed</div>
     </div>
     <div class="stat-card">
-        <div class="stat-number">1</div>
+        <div class="stat-number">0</div>
         <div class="stat-label">In Progress</div>
     </div>
     <div class="stat-card">
@@ -61,7 +61,7 @@
         <span class="count">3</span>
     </div>
     <div class="status-item">
-        <span class="spec-state-badge spec-state-in-progress">In Progress</span>
+        <span class="spec-state-badge spec-state-completed">Completed</span>
         <div class="progress-bar">
             <div class="progress-fill" style="width: 25.0%"></div>
         </div>
@@ -75,8 +75,8 @@
     <div class="activity-item">
         <div class="activity-header">
             <strong><a href="../specs/2026-02-13-01-nextpm-spec-driven-development-showcase.md">2026-02-13-01 NextPM Spec-Driven Development Showcase</a></strong>
-            <span class="spec-state-badge spec-state-in-progress" data-status="in-progress" data-priority="high">
-    🔥 In Progress
+            <span class="spec-state-badge spec-state-completed" data-status="completed" data-priority="high">
+    🔥 Completed
 </span>
         </div>
         <div class="activity-meta">

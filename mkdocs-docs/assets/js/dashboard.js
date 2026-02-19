@@ -13,6 +13,24 @@
      * Initialize dashboard when DOM is ready
      */
     function init() {
+        // Hide right sidebar and maximize content width
+        const rightSidebar = document.querySelector('.md-sidebar--secondary');
+        if (rightSidebar) {
+            rightSidebar.style.display = 'none';
+        }
+
+        const mdContent = document.querySelector('.md-content');
+        if (mdContent) {
+            mdContent.style.maxWidth = 'none';
+        }
+
+        const mdContentInner = document.querySelector('.md-content__inner');
+        if (mdContentInner) {
+            mdContentInner.style.maxWidth = '100%';
+            mdContentInner.style.marginLeft = '0';
+            mdContentInner.style.marginRight = '0';
+        }
+
         loadSpecsData();
     }
 
@@ -79,11 +97,20 @@
             { class: 'spec-updated', html: lastUpdated }
         ];
 
-        cells.forEach(cellData => {
+        cells.forEach((cellData, index) => {
             const td = document.createElement('td');
             td.className = cellData.class;
             td.innerHTML = cellData.html;
             row.appendChild(td);
+
+            // Debug: log first row's cells
+            if (spec.id === specsData[0].id && index === 0) {
+                console.log('First spec first cell:', {
+                    class: cellData.class,
+                    html: cellData.html,
+                    cellCount: cells.length
+                });
+            }
         });
 
         return row;  // Return DOM element directly instead of outerHTML

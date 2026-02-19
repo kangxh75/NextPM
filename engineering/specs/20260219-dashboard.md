@@ -246,7 +246,6 @@ Master Branch (main horizontal line)
 
 - [20260219-pr-tracking](20260219-pr-tracking.md) - PR tracking system that provides data for activity graph
 - [20260213-spec-showcase](20260213-spec-showcase.md) - Visual timeline features and state management
-- [CLAUDE.md](../../CLAUDE.md) - Build process and architecture overview
 
 ### External Resources
 

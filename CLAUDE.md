@@ -348,6 +348,29 @@ The GitHub Actions workflow automatically:
 - Always prefer editing existing files over creating new ones
 - Check for existing placeholders before creating new pages
 
+### Root Folder Hygiene
+**IMPORTANT: Do NOT create files or folders directly under the root directory.**
+
+- ❌ **Never create:** temp files, test files, debug output, logs, or scratch files in root
+- ✅ **Instead:** Use the `/test/` directory for any temporary or debugging files
+- ✅ **Create test folder if needed:** `mkdir test` (not tracked in git via .gitignore)
+- ✅ **Allowed in root:** Only permanent project files (CLAUDE.md, README.md, requirements.txt, mkdocs.yml, etc.)
+
+**Examples:**
+
+```bash
+# ❌ BAD - Creates files in root
+echo "test" > debug.txt
+echo "notes" > scratch.md
+
+# ✅ GOOD - Uses test directory
+mkdir -p test
+echo "test" > test/debug.txt
+echo "notes" > test/scratch.md
+```
+
+**Rationale:** Keeping the root directory clean makes the project structure clear and prevents clutter from accumulating during development work.
+
 ### When Editing mkdocs.yml
 - Maintain navigation hierarchy (Engineering > Dashboard/Specs/Implementation Summaries)
 - **Note**: Spec navigation is auto-generated - manual editing will be overwritten during build

@@ -27,14 +27,6 @@ AI-enhanced specs with visual state management:
 - **🔄 State History** - Complete evolution tracking
 - **🎯 Automated Publishing** - Source specs auto-enhance with timelines
 
-### [🔧 Implementation Summaries](engineering/dev-workflows/index.md)
-Auto-generated development tracking:
-
-- **🤖 AI-Generated** - Automatically created from git commits
-- **🔗 Bidirectional Linking** - Specs ↔ commits ↔ summaries
-- **📊 Development Statistics** - Files changed, contributors, progress
-- **⚡ Real-time Updates** - Regenerated on every build
-
 ## 🌟 Key Features Demonstrated
 
 ### **AI-Assisted Development**

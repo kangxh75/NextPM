@@ -26,8 +26,6 @@ Development commit summaries documenting each code change. These entries show:
 - **How Built** - Technical details and AI assistance used
 - **Related Specs** - Links back to PM planning documents
 
-[Explore Implementation Summaries →](dev-workflows/index.md)
-
 ## The NextPM Approach
 
 ### Building in Public

@@ -244,5 +244,4 @@ Implement a multi-phase enhancement that transforms static specs into dynamic, v
 - **Created:** 2026-02-13
 - **Author:** Kang (with AI assistance from Claude Code)
 - **Last Updated:** 2026-02-13
-- **Related Specs:** [2026-02-09-01 Engineering History Tracking](2026-02-09-01-engineering-history-tracking.md)
 - **Status:** Living document - actively demonstrating spec-driven development

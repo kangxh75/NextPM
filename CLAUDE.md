@@ -352,8 +352,8 @@ The GitHub Actions workflow automatically:
 **IMPORTANT: Do NOT create files or folders directly under the root directory.**
 
 - ❌ **Never create:** temp files, test files, debug output, logs, or scratch files in root
-- ✅ **Instead:** Use the `/test/` directory for any temporary or debugging files
-- ✅ **Create test folder if needed:** `mkdir test` (not tracked in git via .gitignore)
+- ✅ **Instead:** Use the `/localtest/` directory for any temporary or debugging files
+- ✅ **Create localtest folder if needed:** `mkdir -p localtest` (git-ignored via .gitignore)
 - ✅ **Allowed in root:** Only permanent project files (CLAUDE.md, README.md, requirements.txt, mkdocs.yml, etc.)
 
 **Examples:**
@@ -363,13 +363,13 @@ The GitHub Actions workflow automatically:
 echo "test" > debug.txt
 echo "notes" > scratch.md
 
-# ✅ GOOD - Uses test directory
-mkdir -p test
-echo "test" > test/debug.txt
-echo "notes" > test/scratch.md
+# ✅ GOOD - Uses localtest directory
+mkdir -p localtest
+echo "test" > localtest/debug.txt
+echo "notes" > localtest/scratch.md
 ```
 
-**Rationale:** Keeping the root directory clean makes the project structure clear and prevents clutter from accumulating during development work.
+**Rationale:** Keeping the root directory clean makes the project structure clear and prevents clutter from accumulating during development work. The `localtest/` folder is git-ignored and dedicated for local testing and debugging by Claude Code and developers.
 
 ### When Editing mkdocs.yml
 - Maintain navigation hierarchy (Engineering > Dashboard/Specs/Implementation Summaries)

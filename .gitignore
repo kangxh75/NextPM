@@ -70,3 +70,7 @@ logs/
 *.tmp
 *.bak
 .temp/
+
+# Local testing (for Claude Code and local development)
+localtest/
+test/

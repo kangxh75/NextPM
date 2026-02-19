@@ -1059,7 +1059,7 @@ This section contains the complete PM specifications for NextPM features. These 
 
 ## Implementation Tracking
 
-For development implementation summaries, see [Implementation Summaries](../dev-workflows/index.md).
+All specs automatically track related commits and pull requests in their development timeline.
 """
 
     with open(index_path, 'w', encoding='utf-8') as f:
@@ -1127,7 +1127,7 @@ This section contains the complete PM specifications for NextPM features. These 
 
 ## Implementation Tracking
 
-For development implementation summaries, see [Implementation Summaries](../dev-workflows/index.md).
+All specs automatically track related commits and pull requests in their development timeline.
 """
 
     with open(index_path, 'w', encoding='utf-8') as f:

@@ -51,7 +51,7 @@ NextPM/
 │       └── dev-workflows/ # Implementation summaries
 ├── mkdocs-static/        # Static assets (CSS, JS, search index)
 ├── engineering/          # Working artifacts (source of truth)
-│   ├── specs/           # PM specifications (auto-published to website)
+│   ├── specs/           # PM specifications (processed to website during build)
 │   ├── tasks/           # Task breakdowns for features
 │   ├── validations/     # Test reports and validation docs
 │   └── templates/       # Templates for specs and commit summaries
@@ -94,7 +94,7 @@ NextPM/
 The site uses nested navigation under "Engineering":
 - Engineering
   - Dashboard (interactive search and statistics)
-  - Specs (auto-published from engineering/specs/ with visual enhancements)
+  - Specs (processed from engineering/specs/ with visual enhancements during build)
   - Implementation Summaries (development tracking and commit summaries)
 
 All navigation is defined in `mkdocs.yml` and specs navigation is auto-generated during build.
@@ -128,12 +128,12 @@ Examples:
 
 ### Documentation Workflow (Simplified)
 
-**Single-Source-of-Truth Workflow** - Specs are automatically published to website:
+**Build-Time Processing Workflow** - Specs are processed and enhanced during build:
 
 1. **Create PM Spec** in `/engineering/specs/YYYY-MM-DD-nn-feature-name.md`
    - Use template from `/engineering/templates/pm-workflow-spec-template.md`
    - Include version number and Change History section
-   - **Spec is automatically published to website during build**
+   - **Spec is processed to website during next build**
 
 2. **Create Task Breakdown** in `/engineering/tasks/YYYY-MM-DD-nn-feature-name-tasks.md`
 
@@ -144,18 +144,20 @@ Examples:
 
 4. **Create Dev Workflow Summary** in `/mkdocs-docs/engineering/dev-workflows/YYYY-MM-DD-HHMM-implementation-name.md`
    - Document commit hash, files changed, key decisions
-   - Link back to published spec (auto-published from engineering/specs/)
+   - Link back to enhanced spec (processed from engineering/specs/)
    - Use template from `/engineering/templates/dev-workflow-commit-summary-template.md`
 
-**What's Automated:**
-- Specs are automatically copied from `engineering/specs/` to website during build
+**What Happens During Build:**
+- Specs are copied and enhanced from `engineering/specs/` to website during build
 - Navigation entries are automatically generated based on available specs
 - Internal links are processed for website compatibility
 - Visual timelines and state badges are automatically generated
 - Search index and dashboard statistics are updated on every build
 
-**Key Features:**
-The enhanced system provides visual state management, git integration, real-time search, and interactive dashboards that showcase the complete spec-driven development workflow.
+**Build Triggers:**
+- Local: Run `python mkdocs-scripts/build-specs.py` manually
+- Production: CI/CD runs build process on git push
+- Website updates only after commit → push → CI/CD deployment
 
 ### Version Tracking
 
@@ -263,10 +265,11 @@ The GitHub Actions workflow automatically:
 
 ## Spec-Driven Development Philosophy
 
-This repository demonstrates "building in public" principles with automated publishing:
-- Every feature has a PM spec (planning phase) - automatically published to website
+This repository demonstrates "building in public" principles with build-time processing:
+- Every feature has a PM spec (planning phase) - processed to website during build
 - Every commit has implementation tracking (development phase)
 - Complete traceability from idea → spec → code → deployment with visual timelines
+- Website updates through git workflow: edit → commit → push → CI/CD deployment
 - Documentation created as byproduct of regular development, not separate manual process
 - Single-source-of-truth approach eliminates duplication and sync issues
 - AI assistance is explicitly acknowledged in Dev Workflows

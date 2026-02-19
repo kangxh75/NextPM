@@ -14,6 +14,48 @@
             <div class="timeline-marker"></div>
             <div class="timeline-content">
                 <div class="commit-header">
+                    <span class="commit-hash">#7a426c9c</span>
+                    <span class="commit-date">2026-02-19</span>
+                </div>
+                <div class="commit-message">docs: clarify build workflow in CLAUDE.md - remove misleading auto-publish language (#2026-02-13-01)</div>
+                <div class="commit-meta">
+                    <span class="commit-author">👤 Allen Kang (from Dev Box)</span>
+                    <span class="files-changed">📁 1 files changed</span>
+                </div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="commit-header">
+                    <span class="commit-hash">#44a899e4</span>
+                    <span class="commit-date">2026-02-19</span>
+                </div>
+                <div class="commit-message">docs: update CLAUDE.md to reflect current repository structure (#2026-02-13-01)</div>
+                <div class="commit-meta">
+                    <span class="commit-author">👤 Allen Kang (from Dev Box)</span>
+                    <span class="files-changed">📁 1 files changed</span>
+                </div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="commit-header">
+                    <span class="commit-hash">#b4086da1</span>
+                    <span class="commit-date">2026-02-13</span>
+                </div>
+                <div class="commit-message">refactor: clean up repository structure - remove legacy documentation (#2026-02-13-01)</div>
+                <div class="commit-meta">
+                    <span class="commit-author">👤 Allen Kang (from Dev Box)</span>
+                    <span class="files-changed">📁 9 files changed</span>
+                </div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <div class="commit-header">
                     <span class="commit-hash">#a1ee4624</span>
                     <span class="commit-date">2026-02-13</span>
                 </div>

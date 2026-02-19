@@ -21,7 +21,7 @@
         </select>
     </div>
     <div class="search-stats">
-        <span id="search-stats">Showing 4 specifications</span>
+        <span id="search-stats">Showing 5 specifications</span>
     </div>
 </div>
 
@@ -33,7 +33,7 @@
 
 <div class="stats-grid">
     <div class="stat-card">
-        <div class="stat-number">4</div>
+        <div class="stat-number">5</div>
         <div class="stat-label">Total Specs</div>
     </div>
     <div class="stat-card">
@@ -45,7 +45,7 @@
         <div class="stat-label">In Progress</div>
     </div>
     <div class="stat-card">
-        <div class="stat-number">3</div>
+        <div class="stat-number">4</div>
         <div class="stat-label">Draft</div>
     </div>
 </div>
@@ -56,14 +56,14 @@
     <div class="status-item">
         <span class="spec-state-badge spec-state-draft">Draft</span>
         <div class="progress-bar">
-            <div class="progress-fill" style="width: 75.0%"></div>
+            <div class="progress-fill" style="width: 80.0%"></div>
         </div>
-        <span class="count">3</span>
+        <span class="count">4</span>
     </div>
     <div class="status-item">
         <span class="spec-state-badge spec-state-completed">Completed</span>
         <div class="progress-bar">
-            <div class="progress-fill" style="width: 25.0%"></div>
+            <div class="progress-fill" style="width: 20.0%"></div>
         </div>
         <span class="count">1</span>
     </div>
@@ -74,13 +74,25 @@
 <div class="recent-activity">
     <div class="activity-item">
         <div class="activity-header">
+            <strong><a href="../specs/2026-02-13-02-automated-build-flow-documentation.md">2026-02-13-02 Automated Build Flow Documentation</a></strong>
+            <span class="spec-state-badge spec-state-draft" data-status="draft" data-priority="medium">
+    📋 Draft
+</span>
+        </div>
+        <div class="activity-meta">
+            Updated: 2026-02-19 |
+            Priority: Medium
+        </div>
+    </div>
+    <div class="activity-item">
+        <div class="activity-header">
             <strong><a href="../specs/2026-02-13-01-nextpm-spec-driven-development-showcase.md">2026-02-13-01 NextPM Spec-Driven Development Showcase</a></strong>
             <span class="spec-state-badge spec-state-completed" data-status="completed" data-priority="high">
     🔥 Completed
 </span>
         </div>
         <div class="activity-meta">
-            Updated: 2026-02-13 |
+            Updated: 2026-02-19 |
             Priority: High
         </div>
     </div>
@@ -92,7 +104,7 @@
 </span>
         </div>
         <div class="activity-meta">
-            Updated: 2026-02-13 |
+            Updated: 2026-02-19 |
             Priority: Medium
         </div>
     </div>
@@ -104,7 +116,7 @@
 </span>
         </div>
         <div class="activity-meta">
-            Updated: 2026-02-13 |
+            Updated: 2026-02-19 |
             Priority: Medium
         </div>
     </div>
@@ -116,7 +128,7 @@
 </span>
         </div>
         <div class="activity-meta">
-            Updated: 2026-02-13 |
+            Updated: 2026-02-19 |
             Priority: Medium
         </div>
     </div>

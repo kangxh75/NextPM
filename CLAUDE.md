@@ -201,10 +201,74 @@ Specs use **Change History** section for version tracking:
 
 ### Git Workflow
 
-- Main branch: `main`
-- Current branch: `master` (should be synced with main)
+**Branch Strategy: Strict PR-Based Workflow**
+
+NextPM follows a strict Pull Request workflow for all changes. Direct commits to master are **not allowed** except in emergency situations.
+
+**Main Branch:**
+- `master` - Production branch, always deployable
+
+**Development Process:**
+
+1. **For PM Specifications:**
+   ```bash
+   # Create feature branch
+   git checkout -b feat/YYYYMMDD-feature-name
+
+   # Make changes, commit with spec ID
+   git commit -m "feat: create spec for feature (#YYYYMMDD)"
+
+   # Push and create PR
+   git push -u origin feat/YYYYMMDD-feature-name
+   # Create PR on GitHub
+   ```
+
+2. **For Implementation Work:**
+   ```bash
+   # Create implementation branch
+   git checkout -b feat/YYYYMMDD-feature-name-impl
+
+   # Make changes, commit with spec ID
+   git commit -m "feat: implement feature X (#YYYYMMDD)"
+
+   # Push and create PR
+   git push -u origin feat/YYYYMMDD-feature-name-impl
+   # Create PR on GitHub
+   ```
+
+3. **For Bug Fixes:**
+   ```bash
+   # Create fix branch
+   git checkout -b fix/short-description
+
+   # Make changes
+   git commit -m "fix: resolve issue with X"
+
+   # Push and create PR
+   git push -u origin fix/short-description
+   # Create PR on GitHub
+   ```
+
+**Pull Request Requirements:**
+- ✅ All changes must go through PR (including documentation, specs, and code)
+- ✅ PR must pass all CI/CD checks (build, tests)
+- ✅ Use PR template to fill in spec ID
+- ✅ Review changes in "Files changed" tab before merging
+- ✅ Delete branch after merge
+
+**Emergency Hotfixes Only:**
+Direct commits to master are acceptable **only** for:
+- Critical production fixes that can't wait for PR review
+- One-line configuration fixes (e.g., missing navigation entry)
+
+**Commit Message Format:**
 - Always use conventional commits: `feat:`, `fix:`, `docs:`, `refactor:`, etc.
 - Reference spec ID in commit message: `(#YYYYMMDD)`
+- Example: `feat: implement dashboard table view (#20260219)`
+
+**Branch Cleanup:**
+- Delete local branches after PR merge: `git branch -d branch-name`
+- Remote branches are auto-deleted by GitHub after PR merge (if configured)
 
 ## Build Process
 

@@ -976,3 +976,21 @@
 [data-md-color-scheme="slate"] .no-results {
   color: #a0aec0;
 }
+
+/* ===== DASHBOARD LAYOUT OPTIMIZATION ===== */
+/* Hide right sidebar (table of contents) on dashboard page and maximize content width */
+/* Only apply when specs-table-container exists (dashboard page only) */
+.specs-table-container ~ * .md-sidebar--secondary,
+body:has(.specs-table-container) .md-sidebar--secondary {
+  display: none !important;
+}
+
+body:has(.specs-table-container) .md-content {
+  max-width: none !important;
+}
+
+body:has(.specs-table-container) .md-content__inner {
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}

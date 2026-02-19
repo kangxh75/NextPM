@@ -28,5 +28,5 @@
 </div>
 
 <!-- Dashboard Styles and JavaScript -->
-<link rel="stylesheet" href="../../assets/css/dashboard.css">
-<script src="../../assets/js/dashboard.js?v=2"></script>
+<link rel="stylesheet" href="../../assets/css/dashboard.css?v=8">
+<script src="../../assets/js/dashboard.js?v=4"></script>

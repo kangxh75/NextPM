@@ -126,12 +126,37 @@ Examples:
 - `2026-02-09-1200-engineering-history-implementation.md`
 - `2026-02-09-1530-bugfix-navigation.md`
 
+### PM Spec Writing Guidelines
+
+**PM Role: Define WHAT, not HOW**
+
+PM specifications should focus on requirements and user outcomes, not implementation details. Let developers choose the best technical approach.
+
+**Include in PM Specs:**
+- ✅ **Overview** - What needs to be built and why
+- ✅ **Problem** - Current state and pain points
+- ✅ **User Impact** - Who benefits and how
+- ✅ **Proposed Solution** - High-level features and behavior
+- ✅ **Success Metrics** - Completion criteria and quality indicators
+- ✅ **Out of Scope** - What's explicitly not included
+- ✅ **Risks & Mitigations** - Business/project risks
+- ✅ **References** - Related specs and external resources
+
+**Avoid in PM Specs:**
+- ❌ **Technical Design** - Architecture diagrams, data structures, tech stack
+- ❌ **Implementation Phases** - Step-by-step development tasks
+- ❌ **Implementation Notes** - Code examples, performance tips, library choices
+- ❌ **Files to Create/Modify** - Let developers determine file structure
+
+**Why?** Developers need freedom to make technical decisions within the framework you provide. Overly prescriptive specs constrain creativity and may not account for technical constraints discovered during implementation.
+
 ### Documentation Workflow (Simplified)
 
 **Build-Time Processing Workflow** - Specs are processed and enhanced during build:
 
 1. **Create PM Spec** in `/engineering/specs/YYYYMMDD-feature-name.md`
    - Use template from `/engineering/templates/pm-workflow-spec-template.md`
+   - Focus on WHAT (requirements) not HOW (implementation)
    - Include version number and Change History section
    - **Spec is processed to website during next build**
 

@@ -4,10 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-NextPM is an **AI-Native PM Knowledge Hub** - a living laboratory for AI-augmented Product Management. The repository serves as both a teaching resource and a working example of AI-native PM practices.
+NextPM is a **Spec-Driven Development Showcase** - a living laboratory demonstrating AI-era product management and development workflows. The repository showcases how AI assistants can enhance spec-driven development with visual timelines, automated commit tracking, and real-time search capabilities.
 
 **Website**: https://kangxh.com
 **Repository**: https://github.com/kangxh75/NextPM
+
+This project uses itself as the development target, creating a self-referential demonstration of AI-assisted spec-driven development practices.
 
 ## Common Commands
 
@@ -44,27 +46,20 @@ python mkdocs-scripts/build-specs.py
 ```
 NextPM/
 ├── mkdocs-docs/          # Website content (markdown files)
-│   ├── engineering/      # Engineering documentation (NEW structure as of 2026-02-09)
-│   │   ├── pm-workflows/     # PM spec summaries (what to build)
-│   │   └── dev-workflows/    # Dev commit summaries (what was built)
-│   ├── prompts/          # Prompt library for PM tasks
-│   ├── examples/         # Real PM artifacts and case studies
-│   └── about/            # About pages
-├── mkdocs-static/        # Static assets (CSS, images, etc.)
-├── engineering/          # Working artifacts (NOT published to website)
-│   ├── specs/            # Full PM specifications (source of truth)
-│   ├── tasks/            # Task breakdowns for features
-│   ├── validations/      # Test reports and validation docs
-│   └── templates/        # Templates for specs and commits
-├── ai-context/           # AI assistant context and instructions
-├── examples/             # Real PM artifacts (root level)
-├── prompts/              # Prompt library (root level)
-├── meta/                 # Project meta-documentation
-├── mkdocs-scripts/              # Git hooks and utility scripts
-├── mkdocs.yml            # MkDocs configuration (navigation, theme)
-├── requirements.txt      # Python dependencies
-├── venv/                 # Python virtual environment
-└── .github/workflows/    # CI/CD pipelines
+│   └── engineering/      # Engineering documentation
+│       ├── specs/        # Auto-published specifications with visual timelines
+│       └── dev-workflows/ # Implementation summaries
+├── mkdocs-static/        # Static assets (CSS, JS, search index)
+├── engineering/          # Working artifacts (source of truth)
+│   ├── specs/           # PM specifications (auto-published to website)
+│   ├── tasks/           # Task breakdowns for features
+│   ├── validations/     # Test reports and validation docs
+│   └── templates/       # Templates for specs and commit summaries
+├── meta/                # Architecture Decision Records (ADRs)
+├── mkdocs-scripts/      # Build automation and enhancement scripts
+├── mkdocs.yml           # MkDocs configuration (navigation, theme)
+├── requirements.txt     # Python dependencies
+└── .github/workflows/   # CI/CD pipelines
 ```
 
 ### Key Design Decisions
@@ -82,28 +77,25 @@ NextPM/
    - Internal links are processed to work correctly in website context
    - No manual website summary creation required
 
-4. **Dual Content Structure**:
-   - Content exists in both root level (`/examples/`, `/prompts/`) and under `/mkdocs-docs/`
-   - Root level folders contain actual working content
-   - `/mkdocs-docs/` folders contain website-optimized versions
-   - AI context lives in `/ai-context/` for assistant onboarding
+4. **Spec-Driven Development Showcase**:
+   - All specifications demonstrate visual state management with animated timelines
+   - Git integration automatically tracks commits and links them to specs
+   - Real-time search and filtering across all specifications
+   - Interactive dashboard showing development progress and statistics
 
-5. **Engineering History Tracking** (Feature #2026-02-09-01):
-   - Navigation reorganized under "Engineering" parent section
-   - PM Workflows: What to build (specifications)
-   - Dev Workflows: What was built (commit summaries)
-   - Bidirectional linking between specs and commits using spec IDs
+5. **Enhanced Build System** (Feature #2026-02-13-01):
+   - `mkdocs-scripts/build-specs.py` processes specs with visual enhancements
+   - Automated generation of search index and dashboard statistics
+   - Git commit timeline integration with spec references
+   - CSS3 animations and interactive features without heavy frameworks
 
 ### Navigation Structure
 
 The site uses nested navigation under "Engineering":
 - Engineering
-  - Specs (auto-published from project/specs/)
-  - PM Workflows (Legacy) (manually created summaries - deprecated)
-  - Dev Workflows (implementation summaries)
-- Prompt Library
-- Examples
-- About
+  - Dashboard (interactive search and statistics)
+  - Specs (auto-published from engineering/specs/ with visual enhancements)
+  - Implementation Summaries (development tracking and commit summaries)
 
 All navigation is defined in `mkdocs.yml` and specs navigation is auto-generated during build.
 
@@ -152,17 +144,18 @@ Examples:
 
 4. **Create Dev Workflow Summary** in `/mkdocs-docs/engineering/dev-workflows/YYYY-MM-DD-HHMM-implementation-name.md`
    - Document commit hash, files changed, key decisions
-   - Link back to published spec (auto-published from project/specs/)
+   - Link back to published spec (auto-published from engineering/specs/)
    - Use template from `/engineering/templates/dev-workflow-commit-summary-template.md`
 
 **What's Automated:**
 - Specs are automatically copied from `engineering/specs/` to website during build
 - Navigation entries are automatically generated based on available specs
 - Internal links are processed for website compatibility
-- No manual website summary creation required
+- Visual timelines and state badges are automatically generated
+- Search index and dashboard statistics are updated on every build
 
-**Legacy Workflow (Deprecated):**
-The previous workflow required manual creation of website summaries in `/mkdocs-docs/engineering/pm-workflows/`. These remain visible as "PM Workflows (Legacy)" but new specs should only be created in `engineering/specs/`.
+**Key Features:**
+The enhanced system provides visual state management, git integration, real-time search, and interactive dashboards that showcase the complete spec-driven development workflow.
 
 ### Version Tracking
 
@@ -255,7 +248,7 @@ The GitHub Actions workflow automatically:
 - Check for existing placeholders before creating new pages
 
 ### When Editing mkdocs.yml
-- Maintain navigation hierarchy (Engineering > Specs/PM Workflows (Legacy)/Dev Workflows)
+- Maintain navigation hierarchy (Engineering > Dashboard/Specs/Implementation Summaries)
 - **Note**: Spec navigation is auto-generated - manual editing will be overwritten during build
 - Keep navigation order consistent for non-auto-generated sections
 - Test with `python mkdocs-scripts/build.py --strict` after changes
@@ -268,12 +261,12 @@ The GitHub Actions workflow automatically:
 3. Update `mkdocs.yml` navigation for non-spec pages
 4. Test locally with `python mkdocs-scripts/serve.py` before committing
 
-## AI-Native Philosophy
+## Spec-Driven Development Philosophy
 
 This repository demonstrates "building in public" principles with automated publishing:
 - Every feature has a PM spec (planning phase) - automatically published to website
-- Every commit has a Dev Workflow summary (implementation phase)
-- Complete traceability from idea → spec → code → deployment
+- Every commit has implementation tracking (development phase)
+- Complete traceability from idea → spec → code → deployment with visual timelines
 - Documentation created as byproduct of regular development, not separate manual process
 - Single-source-of-truth approach eliminates duplication and sync issues
 - AI assistance is explicitly acknowledged in Dev Workflows

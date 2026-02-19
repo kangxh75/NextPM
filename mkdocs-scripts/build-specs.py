@@ -554,6 +554,77 @@ _This section will be enhanced with AI-powered commit analysis in a future updat
 
     return generated_workflows
 
+def generate_activity_timeline(spec_metadata_collection):
+    """Generate timeline data for D3.js activity graph visualization."""
+    timeline_events = []
+
+    for metadata in spec_metadata_collection:
+        spec_id = metadata.get('spec_id', '')
+        if not spec_id:
+            continue
+
+        # Add spec creation event
+        spec_date = metadata.get('created_date', metadata.get('last_updated', ''))
+        if spec_date:
+            timeline_events.append({
+                'type': 'spec_created',
+                'date': spec_date,
+                'spec_id': spec_id,
+                'title': extract_title_from_spec(Path('engineering/specs') / metadata['filename']),
+                'status': metadata.get('status', 'draft'),
+                'priority': metadata.get('priority', 'medium')
+            })
+
+        # Add commit events
+        git_data = metadata.get('git_commits', {})
+        for commit in git_data.get('commits', []):
+            # Extract branch from commit message or default to feature branch
+            branch_match = re.search(r'(?:feat|fix|docs|style|refactor|test|chore)/([^\s]+)', commit.get('message', ''))
+            branch = branch_match.group(0) if branch_match else f"feat/{spec_id}"
+
+            timeline_events.append({
+                'type': 'commit',
+                'date': commit['date'][:10] if 'date' in commit else '',
+                'spec_id': spec_id,
+                'hash': commit.get('hash', ''),
+                'full_hash': commit.get('full_hash', ''),
+                'message': commit.get('message', ''),
+                'author': commit.get('author', ''),
+                'files_changed': commit.get('files_changed', 0),
+                'branch': branch
+            })
+
+        # Add PR events
+        for pr in git_data.get('pull_requests', []):
+            timeline_events.append({
+                'type': 'pr_merged',
+                'date': pr.get('merge_date', '')[:10] if pr.get('merge_date') else '',
+                'spec_id': spec_id,
+                'pr_number': pr.get('pr_number', 0),
+                'title': pr.get('title', ''),
+                'author': pr.get('author', ''),
+                'branch': pr.get('branch', ''),
+                'reviewers': pr.get('reviewers', []),
+                'github_url': pr.get('github_url', '')
+            })
+
+    # Sort all events by date
+    timeline_events.sort(key=lambda x: x.get('date', ''))
+
+    # Write timeline data to JSON file
+    timeline_path = Path('mkdocs-docs/assets/js/activity-timeline.json')
+    timeline_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(timeline_path, 'w', encoding='utf-8') as f:
+        json.dump({
+            'generated': datetime.now().isoformat(),
+            'total_events': len(timeline_events),
+            'events': timeline_events
+        }, f, indent=2)
+
+    print(f"Generated activity timeline with {len(timeline_events)} events")
+    return timeline_path
+
 def generate_search_index(spec_metadata_collection):
     """Generate JSON search index for client-side search."""
     search_index = []
@@ -1072,6 +1143,11 @@ def main():
         print("\n7. Generating search index...")
         search_index_path = generate_search_index(spec_metadata)
         print(f"Search index available at: {search_index_path}")
+
+        # Step 8: Generate activity timeline for D3.js visualization
+        print("\n8. Generating activity timeline...")
+        timeline_path = generate_activity_timeline(spec_metadata)
+        print(f"Activity timeline available at: {timeline_path}")
 
         print("\nEnhanced build completed successfully!")
         print(f"Published {len(spec_files)} specifications with visual timelines")

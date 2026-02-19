@@ -40,7 +40,17 @@ def extract_title_from_spec(spec_path):
     if filename == '0.00-project-start':
         return '0.00 Project Start'
 
-    # For YYYY-MM-DD-nn format, create readable title
+    # For YYYYMMDD format (new standard), create readable title
+    match = re.match(r'^(\d{8})-(.+)$', filename)
+    if match:
+        spec_id, name_part = match.groups()
+        # Convert kebab-case to Title Case
+        title_part = name_part.replace('-', ' ').title()
+        # Format date for readability: 20260213 -> 2026-02-13
+        formatted_date = f"{spec_id[:4]}-{spec_id[4:6]}-{spec_id[6:8]}"
+        return f"{formatted_date} {title_part}"
+
+    # For legacy YYYY-MM-DD-nn format, create readable title
     match = re.match(r'^(\d{4}-\d{2}-\d{2}-\d{2})-(.+)$', filename)
     if match:
         spec_id, name_part = match.groups()
@@ -59,7 +69,14 @@ def get_spec_sort_key(filename):
     if stem == '0.00-project-start':
         return '0000-00-00-00'
 
-    # For YYYY-MM-DD-nn format
+    # For YYYYMMDD format (new standard)
+    match = re.match(r'^(\d{8})', stem)
+    if match:
+        # Convert YYYYMMDD to YYYY-MM-DD for sorting
+        spec_id = match.group(1)
+        return f"{spec_id[:4]}-{spec_id[4:6]}-{spec_id[6:8]}"
+
+    # For legacy YYYY-MM-DD-nn format
     match = re.match(r'^(\d{4}-\d{2}-\d{2}-\d{2})', stem)
     if match:
         return match.group(1)
@@ -490,7 +507,17 @@ def process_spec_content(content, filename):
     if filename == '0.00-project-start':
         return '0.00 Project Start'
 
-    # For YYYY-MM-DD-nn format, create readable title
+    # For YYYYMMDD format (new standard), create readable title
+    match = re.match(r'^(\d{8})-(.+)$', filename)
+    if match:
+        spec_id, name_part = match.groups()
+        # Convert kebab-case to Title Case
+        title_part = name_part.replace('-', ' ').title()
+        # Format date for readability: 20260213 -> 2026-02-13
+        formatted_date = f"{spec_id[:4]}-{spec_id[4:6]}-{spec_id[6:8]}"
+        return f"{formatted_date} {title_part}"
+
+    # For legacy YYYY-MM-DD-nn format, create readable title
     match = re.match(r'^(\d{4}-\d{2}-\d{2}-\d{2})-(.+)$', filename)
     if match:
         spec_id, name_part = match.groups()
@@ -509,7 +536,14 @@ def get_spec_sort_key(filename):
     if stem == '0.00-project-start':
         return '0000-00-00-00'
 
-    # For YYYY-MM-DD-nn format
+    # For YYYYMMDD format (new standard)
+    match = re.match(r'^(\d{8})', stem)
+    if match:
+        # Convert YYYYMMDD to YYYY-MM-DD for sorting
+        spec_id = match.group(1)
+        return f"{spec_id[:4]}-{spec_id[4:6]}-{spec_id[6:8]}"
+
+    # For legacy YYYY-MM-DD-nn format
     match = re.match(r'^(\d{4}-\d{2}-\d{2}-\d{2})', stem)
     if match:
         return match.group(1)
@@ -845,9 +879,10 @@ This section contains the complete PM specifications for NextPM features. These 
 
 ## Spec Naming Convention
 
-- **Format**: `YYYY-MM-DD-nn-descriptive-name.md`
-- **Example**: `2026-02-09-01-engineering-history-tracking.md`
-- **Exception**: `0.00-project-start.md` (grandfathered first spec)
+- **Format**: `YYYYMMDD-short-description.md`
+- **Example**: `20260213-authentication.md`
+
+**Legacy Format (Deprecated)**: `YYYY-MM-DD-nn-long-descriptive-name.md`
 
 ## Implementation Tracking
 
@@ -912,9 +947,10 @@ This section contains the complete PM specifications for NextPM features. These 
 
 ## Spec Naming Convention
 
-- **Format**: `YYYY-MM-DD-nn-descriptive-name.md`
-- **Example**: `2026-02-09-01-engineering-history-tracking.md`
-- **Exception**: `0.00-project-start.md` (grandfathered first spec)
+- **Format**: `YYYYMMDD-short-description.md`
+- **Example**: `20260213-authentication.md`
+
+**Legacy Format (Deprecated)**: `YYYY-MM-DD-nn-long-descriptive-name.md`
 
 ## Implementation Tracking
 

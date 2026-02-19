@@ -11,9 +11,10 @@ This section contains the complete PM specifications for NextPM features. These 
 
 ## Spec Naming Convention
 
-- **Format**: `YYYY-MM-DD-nn-descriptive-name.md`
-- **Example**: `2026-02-09-01-engineering-history-tracking.md`
-- **Exception**: `0.00-project-start.md` (grandfathered first spec)
+- **Format**: `YYYYMMDD-short-description.md`
+- **Example**: `20260213-authentication.md`
+
+**Legacy Format (Deprecated)**: `YYYY-MM-DD-nn-long-descriptive-name.md`
 
 ## Implementation Tracking
 

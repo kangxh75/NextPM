@@ -8,12 +8,12 @@ category: "nextpm-feature"  # nextpm-feature | demo-feature | learning
 demonstrates: ["spec-driven-development", "ai-assistance"]
 state_history:
   - state: "draft"
-    date: "YYYY-MM-DD"
+    date: "YYYYMMDD"
     author: "Kang"
     notes: "Initial spec creation"
 ---
 
-# YYYY-MM-DD-nn [Feature Name]
+# YYYYMMDD-feature-name
 
 **Date:** YYYY-MM-DD
 **Version:** 1.0

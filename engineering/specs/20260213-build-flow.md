@@ -1,33 +1,19 @@
+---
+status: "draft"  # draft | review | approved | in-progress | completed
+priority: "medium"  # high | medium | low
+estimated_hours: 4
+actual_hours: 0
+assignee: "Kang"
+category: "nextpm-feature"  # nextpm-feature | demo-feature | learning
+demonstrates: ["spec-driven-development", "documentation", "build-automation", "ci-cd"]
+state_history:
+  - state: "draft"
+    date: "2026-02-13"
+    author: "Kang"
+    notes: "Initial spec creation for build flow documentation feature"
+---
 
-# 2026-02-13-02 Automated Build Flow Documentation
-
-<span class="spec-state-badge spec-state-draft" data-status="draft" data-priority="medium">
-    📋 Draft
-</span>
-
-<div class="spec-timeline" data-timeline="{&quot;spec_id&quot;: &quot;2026-02-13-02&quot;, &quot;status&quot;: &quot;draft&quot;, &quot;state_history&quot;: [{&quot;state&quot;: &quot;draft&quot;, &quot;date&quot;: &quot;2026-02-13&quot;, &quot;author&quot;: &quot;Kang&quot;, &quot;notes&quot;: &quot;Initial spec creation for build flow documentation feature&quot;}], &quot;estimated_hours&quot;: 4, &quot;actual_hours&quot;: 0, &quot;priority&quot;: &quot;medium&quot;, &quot;category&quot;: &quot;nextpm-feature&quot;, &quot;demonstrates&quot;: [&quot;spec-driven-development&quot;, &quot;documentation&quot;, &quot;build-automation&quot;, &quot;ci-cd&quot;]}"></div>
-
-<div class="commit-timeline">
-    <h4>📝 Development Timeline</h4>
-    <div class="timeline-container">
-        <div class="timeline-item latest">
-            <div class="timeline-marker"></div>
-            <div class="timeline-content">
-                <div class="commit-header">
-                    <span class="commit-hash">#042395d6</span>
-                    <span class="commit-date">2026-02-19</span>
-                </div>
-                <div class="commit-message">feat: add automated build flow documentation specification (#2026-02-13-02)</div>
-                <div class="commit-meta">
-                    <span class="commit-author">👤 Allen Kang (from Dev Box)</span>
-                    <span class="files-changed">📁 1 files changed</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
+# 20260213-build-flow
 
 **Date:** 2026-02-13
 **Version:** 1.0

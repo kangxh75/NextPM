@@ -1,4 +1,11 @@
-# 2026-02-10-01 Site Authentication
+# 20260210-authentication
+
+<span class="spec-state-badge spec-state-draft" data-status="draft" data-priority="medium">
+    📋 Draft
+</span>
+
+<div class="spec-timeline" data-timeline="{&quot;spec_id&quot;: &quot;20260210-authentication&quot;, &quot;status&quot;: &quot;draft&quot;, &quot;state_history&quot;: [], &quot;estimated_hours&quot;: 0, &quot;actual_hours&quot;: 0, &quot;priority&quot;: &quot;medium&quot;, &quot;category&quot;: &quot;nextpm-feature&quot;, &quot;demonstrates&quot;: []}"></div>
+
 
 **Status:** ✅ Implemented
 **Date:** 2026-02-10
@@ -229,8 +236,8 @@ Azure AD-only authentication provides:
 
 - [Engineering History Tracking Spec](2026-02-09-01-engineering-history-tracking.md) - Established workflow documentation process
 - [Project Start Spec](0.00-project-start.md) - Initial Azure Static Web Apps decision
-- [ADR 003: Azure Static Web Apps](../meta/adr/003-azure-static-web-apps.md) - Architecture decision rationale
-- [ADR 004: Authentication Strategy](../../meta/adr/004-authentication-strategy.md) - Authentication approach and final decision
+- [ADR 003: Azure Static Web Apps](https://github.com/kangxh75/NextPM/blob/master/meta/adr/003-azure-static-web-apps.md) - Architecture decision rationale
+- [ADR 004: Authentication Strategy](https://github.com/kangxh75/NextPM/blob/master/../../meta/adr/004-authentication-strategy.md) - Authentication approach and final decision
 
 ### External Resources
 

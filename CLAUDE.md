@@ -103,17 +103,17 @@ All navigation is defined in `mkdocs.yml` and specs navigation is auto-generated
 
 ### Spec Naming Convention
 
-**Format**: `YYYY-MM-DD-nn-descriptive-name.md`
+**Format**: `YYYYMMDD-short-description.md`
 
 Examples:
-- `2026-02-09-01-engineering-history-tracking.md`
-- `2026-02-09-02-feature-name.md`
+- `20260213-authentication.md`
+- `20260213-build-flow.md`
 
-**Exception**: `0.00-project-start.md` (grandfathered first spec)
+**Legacy Format (Deprecated)**: `YYYY-MM-DD-nn-long-descriptive-name.md`
 
-**Spec ID in Commits**: Use `(#YYYY-MM-DD-nn)` format in commit messages for linking:
+**Spec ID in Commits**: Use `(#YYYYMMDD)` format in commit messages for linking:
 ```bash
-git commit -m "feat: implement feature X (#2026-02-09-01)"
+git commit -m "feat: implement feature X (#20260213)"
 ```
 
 ### Dev Workflow Naming Convention
@@ -130,16 +130,16 @@ Examples:
 
 **Build-Time Processing Workflow** - Specs are processed and enhanced during build:
 
-1. **Create PM Spec** in `/engineering/specs/YYYY-MM-DD-nn-feature-name.md`
+1. **Create PM Spec** in `/engineering/specs/YYYYMMDD-feature-name.md`
    - Use template from `/engineering/templates/pm-workflow-spec-template.md`
    - Include version number and Change History section
    - **Spec is processed to website during next build**
 
-2. **Create Task Breakdown** in `/engineering/tasks/YYYY-MM-DD-nn-feature-name-tasks.md`
+2. **Create Task Breakdown** in `/engineering/tasks/YYYYMMDD-feature-name-tasks.md`
 
 3. **Implement Feature** and commit with spec ID reference:
    ```bash
-   git commit -m "feat: implement feature (#2026-02-09-01)"
+   git commit -m "feat: implement feature (#20260213)"
    ```
 
 4. **Create Dev Workflow Summary** in `/mkdocs-docs/engineering/dev-workflows/YYYY-MM-DD-HHMM-implementation-name.md`
@@ -179,7 +179,7 @@ Specs use **Change History** section for version tracking:
 - Main branch: `main`
 - Current branch: `master` (should be synced with main)
 - Always use conventional commits: `feat:`, `fix:`, `docs:`, `refactor:`, etc.
-- Reference spec ID in commit message: `(#YYYY-MM-DD-nn)`
+- Reference spec ID in commit message: `(#YYYYMMDD)`
 
 ## Build Process
 

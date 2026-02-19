@@ -814,148 +814,39 @@ def generate_spec_dashboard(spec_metadata_collection):
                          key=lambda x: x.get('last_updated', ''),
                          reverse=True)[:5]
 
-    # Generate dashboard content
+    # Generate dashboard content with simplified table view
     content = f"""# 📊 NextPM Spec Dashboard
 
-<div class="dashboard-container">
+## 📋 Spec Table
 
-## 🔍 Search & Filter
-
-<div class="search-section">
-    <div class="search-bar">
-        <input type="text" id="spec-search" placeholder="Search specifications..." class="search-input" />
-        <button id="clear-search" class="clear-button">Clear</button>
-    </div>
-    <div class="filter-row">
-        <select id="status-filter" class="filter-dropdown">
-            <option value="all">All Statuses</option>
-        </select>
-        <select id="priority-filter" class="filter-dropdown">
-            <option value="all">All Priorities</option>
-        </select>
-        <select id="category-filter" class="filter-dropdown">
-            <option value="all">All Categories</option>
-        </select>
-    </div>
-    <div class="search-stats">
-        <span id="search-stats">Showing {total_specs} specifications</span>
-    </div>
+<div class="specs-table-container">
+    <table class="specs-table" id="specs-table">
+        <thead>
+            <tr>
+                <th data-sort="id" class="sortable">Spec ID</th>
+                <th data-sort="status" class="sortable">Status</th>
+                <th data-sort="commits" class="sortable">Commits</th>
+                <th data-sort="prs" class="sortable">PRs</th>
+                <th data-sort="updated" class="sortable">Last Updated</th>
+            </tr>
+        </thead>
+        <tbody id="specs-table-body">
+            <!-- Table rows will be populated by JavaScript from search-index.json -->
+        </tbody>
+    </table>
 </div>
 
-<div id="search-results" class="search-results-container">
-    <!-- Search results will be populated here by JavaScript -->
+## 📈 Development History
+
+<div class="dev-history-placeholder">
+    <p style="text-align: center; color: #9ca3af; padding: 2rem;">
+        Development history visualization will be added here in a future update.
+    </p>
 </div>
 
-## 📈 Statistics
-
-<div class="stats-grid">
-    <div class="stat-card">
-        <div class="stat-number">{total_specs}</div>
-        <div class="stat-label">Total Specs</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-number">{status_counts.get('completed', 0)}</div>
-        <div class="stat-label">Completed</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-number">{status_counts.get('in-progress', 0)}</div>
-        <div class="stat-label">In Progress</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-number">{status_counts.get('draft', 0)}</div>
-        <div class="stat-label">Draft</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-number">{total_commits}</div>
-        <div class="stat-label">Commits</div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-number">{total_prs}</div>
-        <div class="stat-label">Pull Requests</div>
-    </div>
-</div>
-
-## 🎯 Status Breakdown
-
-<div class="status-breakdown">
-"""
-
-    for status, count in status_counts.items():
-        percentage = (count / total_specs * 100) if total_specs > 0 else 0
-        content += f"""    <div class="status-item">
-        <span class="spec-state-badge spec-state-{status}">{status.replace('-', ' ').title()}</span>
-        <div class="progress-bar">
-            <div class="progress-fill" style="width: {percentage}%"></div>
-        </div>
-        <span class="count">{count}</span>
-    </div>
-"""
-
-    content += f"""</div>
-
-## 🔄 Recent Activity
-
-<div class="recent-activity">
-"""
-
-    for spec in recent_specs:
-        state_badge = generate_state_badge_html(
-            spec.get('status', 'draft'),
-            spec.get('priority', 'medium')
-        )
-        title = extract_title_from_spec(Path('engineering/specs') / spec['filename'])
-
-        content += f"""    <div class="activity-item">
-        <div class="activity-header">
-            <strong><a href="../specs/{spec['filename']}">{title}</a></strong>
-            {state_badge}
-        </div>
-        <div class="activity-meta">
-            Updated: {spec.get('last_updated', 'Unknown')[:10]} |
-            Priority: {spec.get('priority', 'medium').title()}
-        </div>
-    </div>
-"""
-
-    content += f"""</div>
-
-## 🎨 Live Development
-
-<div class="live-dev-feed">
-    <div class="dev-item">
-        <span class="dev-status">🚧 Currently implementing</span>
-        <span class="dev-description">Enhanced spec state management and visual timeline system</span>
-    </div>
-    <div class="dev-item">
-        <span class="dev-status">⏭️ Next up</span>
-        <span class="dev-description">Git integration and automated commit tracking</span>
-    </div>
-</div>
-
-</div>
-
-<!-- Dashboard JavaScript -->
-<script src="../../mkdocs-static/js/nextpm-search.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {{
-    // Initialize dashboard animations
-    const statCards = document.querySelectorAll('.stat-card');
-    statCards.forEach((card, index) => {{
-        setTimeout(() => {{
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }}, index * 100);
-    }});
-
-    // Animate progress bars
-    const progressFills = document.querySelectorAll('.progress-fill');
-    progressFills.forEach(fill => {{
-        setTimeout(() => {{
-            fill.style.transform = 'scaleX(1)';
-        }}, 500);
-    }});
-}});
-</script>
+<!-- Dashboard Styles and JavaScript -->
+<link rel="stylesheet" href="../../assets/css/dashboard.css">
+<script src="../../assets/js/dashboard.js?v=2"></script>
 """
 
     with open(dashboard_path, 'w', encoding='utf-8') as f:

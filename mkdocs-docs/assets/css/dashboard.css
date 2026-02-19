@@ -1,0 +1,272 @@
+/**
+ * Dashboard Table Styles
+ * Sortable/filterable table view for all specifications
+ */
+
+/* Table Container */
+.specs-table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Base Styles */
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 0.9rem;
+}
+
+.specs-table thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.specs-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+    position: relative;
+}
+
+.specs-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.specs-table th.sortable:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Sort Indicators */
+.specs-table th.sortable::after {
+    content: '⇅';
+    opacity: 0.3;
+    margin-left: 0.5rem;
+    font-size: 0.8em;
+}
+
+.specs-table th.sort-asc::after {
+    content: '▲';
+    opacity: 1;
+}
+
+.specs-table th.sort-desc::after {
+    content: '▼';
+    opacity: 1;
+}
+
+/* Table Body */
+.specs-table tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+    transition: background-color 0.2s ease;
+}
+
+.specs-table tbody tr:hover {
+    background-color: #f9fafb;
+    cursor: pointer;
+}
+
+.specs-table td {
+    padding: 0.875rem 1rem;
+}
+
+/* Specific Column Styles */
+.spec-id a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.spec-id a:hover {
+    text-decoration: underline;
+}
+
+.spec-title {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.spec-hours,
+.spec-commits,
+.spec-prs {
+    text-align: center;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+.spec-updated {
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+.spec-assignee {
+    font-weight: 500;
+    color: #374151;
+}
+
+/* Badge Styles */
+.spec-state-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.spec-state-draft {
+    background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+    color: white;
+}
+
+.spec-state-in-progress {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    color: white;
+}
+
+.spec-state-completed {
+    background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+    color: white;
+}
+
+.spec-state-archived {
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+    color: white;
+}
+
+.priority-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.priority-low {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.priority-medium {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.priority-high {
+    background-color: #fed7aa;
+    color: #9a3412;
+}
+
+.priority-critical {
+    background-color: #fecaca;
+    color: #991b1b;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .specs-table {
+        font-size: 0.85rem;
+    }
+
+    .specs-table th,
+    .specs-table td {
+        padding: 0.75rem;
+    }
+
+    .spec-title {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .specs-table-container {
+        margin: 1rem -1rem;
+        border-radius: 0;
+    }
+
+    .specs-table {
+        font-size: 0.8rem;
+    }
+
+    .specs-table th,
+    .specs-table td {
+        padding: 0.5rem;
+    }
+
+    .spec-title {
+        max-width: 150px;
+    }
+
+    /* Hide less important columns on mobile */
+    .specs-table th:nth-child(5),
+    .specs-table td:nth-child(5),
+    .specs-table th:nth-child(6),
+    .specs-table td:nth-child(6),
+    .specs-table th:nth-child(10),
+    .specs-table td:nth-child(10) {
+        display: none;
+    }
+}
+
+/* Empty State */
+.specs-table tbody td[colspan] {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* Hover Effect for Clickable Rows */
+.spec-row {
+    position: relative;
+}
+
+.spec-row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.spec-row:hover::before {
+    opacity: 1;
+}
+
+/* Animation for Initial Load */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.spec-row {
+    animation: fadeInUp 0.3s ease forwards;
+}
+
+.spec-row:nth-child(1) { animation-delay: 0.05s; }
+.spec-row:nth-child(2) { animation-delay: 0.1s; }
+.spec-row:nth-child(3) { animation-delay: 0.15s; }
+.spec-row:nth-child(4) { animation-delay: 0.2s; }
+.spec-row:nth-child(5) { animation-delay: 0.25s; }

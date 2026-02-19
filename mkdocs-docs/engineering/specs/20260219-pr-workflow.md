@@ -13,6 +13,23 @@
         <div class="timeline-item latest">
             <div class="timeline-marker timeline-marker-pr"></div>
             <div class="timeline-content">
+                <div class="timeline-type-badge pr-badge">🔀 Pull Request #7</div>
+                <div class="pr-header">
+                    <a href="https://github.com/kangxh75/NextPM/pull/7" target="_blank" class="pr-link">
+                        <span class="pr-title">Merge pull request #7 from kangxh75/feat/20260219-dashboard-impl</span>
+                    </a>
+                    <span class="pr-date">2026-02-19</span>
+                </div>
+                <div class="pr-meta">
+                    <span class="pr-author">👤 kangxh</span>
+                    <span class="pr-branch">🌿 kangxh75/feat/20260219-dashboard-impl</span>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker timeline-marker-pr"></div>
+            <div class="timeline-content">
                 <div class="timeline-type-badge pr-badge">🔀 Pull Request #2</div>
                 <div class="pr-header">
                     <a href="https://github.com/kangxh75/NextPM/pull/2" target="_blank" class="pr-link">

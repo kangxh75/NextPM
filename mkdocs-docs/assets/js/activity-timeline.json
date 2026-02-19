@@ -1,7 +1,18 @@
 {
-  "generated": "2026-02-19T18:06:02.492910",
-  "total_events": 9,
+  "generated": "2026-02-19T18:34:37.205347",
+  "total_events": 12,
   "events": [
+    {
+      "type": "pr_merged",
+      "date": "2026-02-19",
+      "spec_id": "20260219-dashboard",
+      "pr_number": "7",
+      "title": "Merge pull request #7 from kangxh75/feat/20260219-dashboard-impl",
+      "author": "kangxh",
+      "branch": "kangxh75/feat/20260219-dashboard-impl",
+      "reviewers": [],
+      "github_url": "https://github.com/kangxh75/NextPM/pull/7"
+    },
     {
       "type": "pr_merged",
       "date": "2026-02-19",
@@ -12,6 +23,17 @@
       "branch": "kangxh75/feat/20260219-pr-tracking",
       "reviewers": [],
       "github_url": "https://github.com/kangxh75/NextPM/pull/2"
+    },
+    {
+      "type": "pr_merged",
+      "date": "2026-02-19",
+      "spec_id": "20260219-pr-tracking",
+      "pr_number": "7",
+      "title": "Merge pull request #7 from kangxh75/feat/20260219-dashboard-impl",
+      "author": "kangxh",
+      "branch": "kangxh75/feat/20260219-dashboard-impl",
+      "reviewers": [],
+      "github_url": "https://github.com/kangxh75/NextPM/pull/7"
     },
     {
       "type": "pr_merged",
@@ -28,6 +50,17 @@
       "type": "pr_merged",
       "date": "2026-02-19",
       "spec_id": "20260219-pr-workflow",
+      "pr_number": "7",
+      "title": "Merge pull request #7 from kangxh75/feat/20260219-dashboard-impl",
+      "author": "kangxh",
+      "branch": "kangxh75/feat/20260219-dashboard-impl",
+      "reviewers": [],
+      "github_url": "https://github.com/kangxh75/NextPM/pull/7"
+    },
+    {
+      "type": "pr_merged",
+      "date": "2026-02-19",
+      "spec_id": "20260219-pr-workflow",
       "pr_number": "2",
       "title": "Merge pull request #2 from kangxh75/feat/20260219-pr-tracking",
       "author": "kangxh",
@@ -37,7 +70,7 @@
     },
     {
       "type": "spec_created",
-      "date": "2026-02-19T18:05:59.978202",
+      "date": "2026-02-19T18:34:34.618947",
       "spec_id": "20260210-authentication",
       "title": "20260210-authentication",
       "status": "draft",
@@ -45,7 +78,7 @@
     },
     {
       "type": "spec_created",
-      "date": "2026-02-19T18:06:00.343819",
+      "date": "2026-02-19T18:34:35.030058",
       "spec_id": "20260213-build-flow",
       "title": "20260213-build-flow",
       "status": "draft",
@@ -53,7 +86,7 @@
     },
     {
       "type": "spec_created",
-      "date": "2026-02-19T18:06:00.727350",
+      "date": "2026-02-19T18:34:35.490416",
       "spec_id": "20260213-spec-showcase",
       "title": "20260213-spec-showcase",
       "status": "completed",
@@ -61,7 +94,7 @@
     },
     {
       "type": "spec_created",
-      "date": "2026-02-19T18:06:01.131997",
+      "date": "2026-02-19T18:34:35.883544",
       "spec_id": "20260219-dashboard",
       "title": "20260219-dashboard",
       "status": "draft",
@@ -69,7 +102,7 @@
     },
     {
       "type": "spec_created",
-      "date": "2026-02-19T18:06:01.566788",
+      "date": "2026-02-19T18:34:36.317450",
       "spec_id": "20260219-pr-tracking",
       "title": "20260219-pr-tracking",
       "status": "completed",
@@ -77,7 +110,7 @@
     },
     {
       "type": "spec_created",
-      "date": "2026-02-19T18:06:02.011556",
+      "date": "2026-02-19T18:34:36.767985",
       "spec_id": "20260219-pr-workflow",
       "title": "20260219-pr-workflow",
       "status": "completed",

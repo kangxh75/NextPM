@@ -155,10 +155,36 @@
     </div>
 </div>
 
+## 📋 Specifications Table
+
+<div class="specs-table-container">
+    <table class="specs-table" id="specs-table">
+        <thead>
+            <tr>
+                <th data-sort="id" class="sortable">Spec ID</th>
+                <th data-sort="title" class="sortable">Title</th>
+                <th data-sort="status" class="sortable">Status</th>
+                <th data-sort="priority" class="sortable">Priority</th>
+                <th data-sort="estimated_hours" class="sortable">Est. Hours</th>
+                <th data-sort="actual_hours" class="sortable">Actual Hours</th>
+                <th data-sort="commits" class="sortable">Commits</th>
+                <th data-sort="prs" class="sortable">PRs</th>
+                <th data-sort="updated" class="sortable">Last Updated</th>
+                <th data-sort="assignee" class="sortable">Assignee</th>
+            </tr>
+        </thead>
+        <tbody id="specs-table-body">
+            <!-- Table rows will be populated by JavaScript from search-index.json -->
+        </tbody>
+    </table>
 </div>
 
-<!-- Dashboard JavaScript -->
+</div>
+
+<!-- Dashboard Styles and JavaScript -->
+<link rel="stylesheet" href="../../mkdocs-static/css/dashboard.css">
 <script src="../../mkdocs-static/js/nextpm-search.js"></script>
+<script src="../../mkdocs-static/js/dashboard.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize dashboard animations

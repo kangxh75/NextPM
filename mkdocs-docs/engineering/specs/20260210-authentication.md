@@ -234,8 +234,6 @@ Azure AD-only authentication provides:
 
 ### Internal Documents
 
-- [Engineering History Tracking Spec](2026-02-09-01-engineering-history-tracking.md) - Established workflow documentation process
-- [Project Start Spec](0.00-project-start.md) - Initial Azure Static Web Apps decision
 - [ADR 003: Azure Static Web Apps](https://github.com/kangxh75/NextPM/blob/master/meta/adr/003-azure-static-web-apps.md) - Architecture decision rationale
 - [ADR 004: Authentication Strategy](https://github.com/kangxh75/NextPM/blob/master/../../meta/adr/004-authentication-strategy.md) - Authentication approach and final decision
 

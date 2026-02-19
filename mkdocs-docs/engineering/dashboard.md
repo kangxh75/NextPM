@@ -21,7 +21,7 @@
         </select>
     </div>
     <div class="search-stats">
-        <span id="search-stats">Showing 3 specifications</span>
+        <span id="search-stats">Showing 6 specifications</span>
     </div>
 </div>
 
@@ -33,11 +33,11 @@
 
 <div class="stats-grid">
     <div class="stat-card">
-        <div class="stat-number">3</div>
+        <div class="stat-number">6</div>
         <div class="stat-label">Total Specs</div>
     </div>
     <div class="stat-card">
-        <div class="stat-number">1</div>
+        <div class="stat-number">3</div>
         <div class="stat-label">Completed</div>
     </div>
     <div class="stat-card">
@@ -45,7 +45,7 @@
         <div class="stat-label">In Progress</div>
     </div>
     <div class="stat-card">
-        <div class="stat-number">2</div>
+        <div class="stat-number">3</div>
         <div class="stat-label">Draft</div>
     </div>
     <div class="stat-card">
@@ -53,7 +53,7 @@
         <div class="stat-label">Commits</div>
     </div>
     <div class="stat-card">
-        <div class="stat-number">0</div>
+        <div class="stat-number">3</div>
         <div class="stat-label">Pull Requests</div>
     </div>
 </div>
@@ -64,22 +64,58 @@
     <div class="status-item">
         <span class="spec-state-badge spec-state-draft">Draft</span>
         <div class="progress-bar">
-            <div class="progress-fill" style="width: 66.66666666666666%"></div>
+            <div class="progress-fill" style="width: 50.0%"></div>
         </div>
-        <span class="count">2</span>
+        <span class="count">3</span>
     </div>
     <div class="status-item">
         <span class="spec-state-badge spec-state-completed">Completed</span>
         <div class="progress-bar">
-            <div class="progress-fill" style="width: 33.33333333333333%"></div>
+            <div class="progress-fill" style="width: 50.0%"></div>
         </div>
-        <span class="count">1</span>
+        <span class="count">3</span>
     </div>
 </div>
 
 ## 🔄 Recent Activity
 
 <div class="recent-activity">
+    <div class="activity-item">
+        <div class="activity-header">
+            <strong><a href="../specs/20260219-pr-workflow.md">20260219-pr-workflow</a></strong>
+            <span class="spec-state-badge spec-state-completed" data-status="completed" data-priority="high">
+    🔥 Completed
+</span>
+        </div>
+        <div class="activity-meta">
+            Updated: 2026-02-19 |
+            Priority: High
+        </div>
+    </div>
+    <div class="activity-item">
+        <div class="activity-header">
+            <strong><a href="../specs/20260219-pr-tracking.md">20260219-pr-tracking</a></strong>
+            <span class="spec-state-badge spec-state-completed" data-status="completed" data-priority="high">
+    🔥 Completed
+</span>
+        </div>
+        <div class="activity-meta">
+            Updated: 2026-02-19 |
+            Priority: High
+        </div>
+    </div>
+    <div class="activity-item">
+        <div class="activity-header">
+            <strong><a href="../specs/20260219-dashboard.md">20260219-dashboard</a></strong>
+            <span class="spec-state-badge spec-state-draft" data-status="draft" data-priority="medium">
+    📋 Draft
+</span>
+        </div>
+        <div class="activity-meta">
+            Updated: 2026-02-19 |
+            Priority: Medium
+        </div>
+    </div>
     <div class="activity-item">
         <div class="activity-header">
             <strong><a href="../specs/20260213-spec-showcase.md">20260213-spec-showcase</a></strong>
@@ -95,18 +131,6 @@
     <div class="activity-item">
         <div class="activity-header">
             <strong><a href="../specs/20260213-build-flow.md">20260213-build-flow</a></strong>
-            <span class="spec-state-badge spec-state-draft" data-status="draft" data-priority="medium">
-    📋 Draft
-</span>
-        </div>
-        <div class="activity-meta">
-            Updated: 2026-02-19 |
-            Priority: Medium
-        </div>
-    </div>
-    <div class="activity-item">
-        <div class="activity-header">
-            <strong><a href="../specs/20260210-authentication.md">20260210-authentication</a></strong>
             <span class="spec-state-badge spec-state-draft" data-status="draft" data-priority="medium">
     📋 Draft
 </span>

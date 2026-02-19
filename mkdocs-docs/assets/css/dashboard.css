@@ -310,3 +310,71 @@
 .spec-row:nth-child(3) { animation-delay: 0.15s; }
 .spec-row:nth-child(4) { animation-delay: 0.2s; }
 .spec-row:nth-child(5) { animation-delay: 0.25s; }
+
+/* ===== ACTIVITY GRAPH STYLES ===== */
+
+#activity-graph-container {
+    position: relative;
+}
+
+.activity-graph {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Axis Styles */
+.time-axis path,
+.time-axis line {
+    stroke: #e5e7eb;
+}
+
+.time-axis text {
+    fill: #6b7280;
+    font-size: 12px;
+}
+
+/* Branch Labels */
+.branch-label {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+}
+
+/* Node Hover Effects */
+.spec-node:hover path,
+.commit-node:hover circle,
+.pr-node:hover rect {
+    opacity: 0.8;
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+}
+
+/* Tooltip */
+.activity-graph-tooltip {
+    line-height: 1.4;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.activity-graph-tooltip strong {
+    display: block;
+    margin-bottom: 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 4px;
+}
+
+/* Legend Styles */
+.legend text {
+    fill: #374151;
+    font-size: 12px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #activity-graph-container {
+        min-height: 400px;
+        overflow-x: auto;
+    }
+
+    .activity-graph {
+        min-width: 800px;
+    }
+}
+

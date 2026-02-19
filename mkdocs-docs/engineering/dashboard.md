@@ -48,6 +48,14 @@
         <div class="stat-number">2</div>
         <div class="stat-label">Draft</div>
     </div>
+    <div class="stat-card">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Commits</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Pull Requests</div>
+    </div>
 </div>
 
 ## 🎯 Status Breakdown

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-02-19T09:52:04.030357",
+  "generated": "2026-02-19T10:19:53.576398",
   "total_specs": 3,
   "index": [
     {
@@ -14,8 +14,9 @@
       "actual_hours": 0,
       "demonstrates": [],
       "content": "20260210-authentication 20260210-authentication\n\nstatus: \u2705 implemented\ndate: 2026-02-10\nversion: 2.0\npriority: high\n\noverview\n\nimplement authentication for the nextpm website to protect the prompt library while keeping all other content public including engineering documentation. the solution uses azure ad (microsoft entra id) oauth-based authentication for secure, enterprise-grade access control.\n\nproblem\n\ncurrent state:\n\n- nextpm website is completely public and accessible to anyone\n- prompt library represents valuable intellectual property with no protection\n- no authentication or access control exists\n- azure static web apps resource is deployed but has no authentication configured\n\npain points:\n\n- cannot protect prompt library templates and examples\n- prompts represent curated intellectual property that should be restricted\n- no way to track who is accessing the prompt library\n- public content (home, engineering, examples, about pages) should remain open for teaching and portfolio",
-      "last_updated": "2026-02-19T09:52:03.451664",
+      "last_updated": "2026-02-19T10:19:52.556577",
       "git_commits": 0,
+      "pull_requests": 0,
       "url": "engineering/specs/20260210-authentication.md"
     },
     {
@@ -35,8 +36,9 @@
         "ci-cd"
       ],
       "content": "20260213-build-flow \n20260213-build-flow\n\ndate: 2026-02-13\nversion: 1.0\n\noverview\n\ncreate comprehensive documentation explaining the automated build flow that transforms specifications from source files into enhanced, displayable website content. this feature will document the complete pipeline from \"git push\" to live website deployment, serving as both user education and a demonstration of nextpm's self-referential spec-driven development approach.\n\nproblem\n\ncurrent state:\n- users understand they can create specs in `engineering/specs/` folder\n- ci/cd pipeline works correctly but process is opaque to users\n- no clear documentation showing what happens between \"git push\" and \"website live\"\n- users may assume it's \"auto-publishing\" when it's actually build-time processing\n\npain points:\n- confusion about timing: users don't know when their changes will appear\n- black box process: no visibility into what the build system actually does\n- troubleshooting difficulty: when builds fail, users ",
-      "last_updated": "2026-02-19T09:52:03.644147",
+      "last_updated": "2026-02-19T10:19:52.881879",
       "git_commits": 0,
+      "pull_requests": 0,
       "url": "engineering/specs/20260213-build-flow.md"
     },
     {
@@ -56,8 +58,9 @@
         "state-management"
       ],
       "content": "20260213-spec-showcase \n20260213-spec-showcase\n\ndate: 2026-02-13\nversion: 1.0\n\noverview\n\ntransform nextpm into a comprehensive demonstration of ai-era spec-driven development. this feature showcases ai-vibe coding practices with claude code, github copilot, and other ai tools by making the website itself both the documentation platform and the development target.\n\nproblem\n\ncurrent state:\n- nextpm exists as a static documentation hub with basic spec automation\n- no visual representation of spec evolution or development progress\n- limited real-time demonstration of spec-driven development workflow\n- no interactive features to showcase the iterative nature of ai-assisted development\n\npain points:\n- visitors cannot see the dynamic nature of spec-driven development\n- no visual storytelling showing how specs evolve from draft to completion\n- missing demonstration of ai-native development practices\n- static presentation doesn't reflect the interactive nature of modern pm workflows\n\nuser impac",
-      "last_updated": "2026-02-19T09:52:03.832522",
+      "last_updated": "2026-02-19T10:19:53.228646",
       "git_commits": 0,
+      "pull_requests": 0,
       "url": "engineering/specs/20260213-spec-showcase.md"
     }
   ]

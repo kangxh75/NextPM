@@ -206,7 +206,7 @@ def inject_timeline_data(content, metadata):
             lines.insert(i + 3, '')
             lines.insert(i + 4, f'<div class="spec-timeline" data-timeline="{json.dumps(timeline_data).replace('"', "&quot;")}"></div>')
             lines.insert(i + 5, '')
-            if git_data.get('commits'):
+            if git_data.get('commits') or git_data.get('pull_requests'):
                 lines.insert(i + 6, commit_timeline)
                 lines.insert(i + 7, '')
             break
@@ -278,6 +278,9 @@ def collect_git_data(spec_id):
             contributors.add(commit['author'])
         git_data['contributors'] = list(contributors)
 
+        # Collect PR data
+        git_data['pull_requests'] = collect_pr_data(spec_id)
+
         return git_data
 
     except Exception as e:
@@ -292,22 +295,110 @@ def collect_git_data(spec_id):
             'error': str(e)
         }
 
-def generate_commit_timeline_html(git_data):
-    """Generate HTML visualization for commit timeline."""
-    if not git_data.get('commits'):
-        return '<div class="commit-timeline-empty">No commits linked to this spec yet.</div>'
+def collect_pr_data(spec_id):
+    """Collect PR data for spec-PR linking via git merge commits."""
+    try:
+        import subprocess
+        import re
 
-    html = '<div class="commit-timeline">\n'
-    html += '    <h4>📝 Development Timeline</h4>\n'
-    html += '    <div class="timeline-container">\n'
+        pr_data = []
 
-    for i, commit in enumerate(git_data['commits']):
-        is_latest = i == 0
-        timeline_class = 'timeline-item latest' if is_latest else 'timeline-item'
+        # Extract just the date part for searching (YYYYMMDD or YYYY-MM-DD-nn format)
+        # This allows matching both full spec IDs and shortened versions in commits
+        search_patterns = [f'#{spec_id}']
 
-        html += f'''        <div class="{timeline_class}">
-            <div class="timeline-marker"></div>
+        # If spec_id contains a dash and description (e.g., 20260213-spec-showcase),
+        # also search for just the date part (20260213)
+        if '-' in spec_id and not re.match(r'^\d{4}-\d{2}-\d{2}-\d{2}$', spec_id):
+            # Extract YYYYMMDD from YYYYMMDD-description format
+            date_part = spec_id.split('-')[0]
+            if len(date_part) == 8 and date_part.isdigit():
+                search_patterns.append(f'#{date_part}')
+
+        # Find merge commits that reference this spec
+        # Search for both full ID and date-only ID
+        all_results = []
+        for pattern in search_patterns:
+            cmd = [
+                'git', 'log',
+                '--grep', pattern,
+                '--merges',
+                '--pretty=format:%H|%ad|%s|%an|%b|||',  # ||| as body separator
+                '--date=iso'
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True, cwd='.')
+
+            if result.returncode == 0 and result.stdout.strip():
+                all_results.append(result.stdout.strip())
+
+        # Combine and deduplicate results
+        seen_hashes = set()
+        if all_results:
+            for result_text in all_results:
+                entries = result_text.split('|||')
+
+                for entry in entries:
+                    if not entry.strip():
+                        continue
+
+                    parts = entry.split('|', 4)
+                    if len(parts) >= 4:
+                        commit_hash = parts[0]
+
+                        # Skip if we've already processed this commit
+                        if commit_hash in seen_hashes:
+                            continue
+                        seen_hashes.add(commit_hash)
+
+                        merge_date = parts[1]
+                        subject = parts[2]
+                        author = parts[3]
+                        body = parts[4] if len(parts) > 4 else ""
+
+                        # Extract PR number from subject
+                        # Pattern: "Merge pull request #123 from..."
+                        pr_match = re.search(r'#(\d+)', subject)
+                        if pr_match:
+                            pr_number = pr_match.group(1)
+
+                            # Extract PR title (text after "from branch_name")
+                            title_match = re.search(r'from [^\s]+\s+(.+)', subject)
+                            pr_title = title_match.group(1).strip() if title_match else subject
+
+                            # Extract reviewers from body (Co-authored-by lines)
+                            reviewers = []
+                            co_author_pattern = r'Co-authored-by:\s*([^<\n]+)'
+                            reviewers = re.findall(co_author_pattern, body)
+
+                            # Get branch name
+                            branch_match = re.search(r'from ([^\s]+)', subject)
+                            branch = branch_match.group(1) if branch_match else "unknown"
+
+                            pr_data.append({
+                                'pr_number': pr_number,
+                                'title': pr_title,
+                                'merge_date': merge_date,
+                                'author': author,
+                                'reviewers': reviewers,
+                                'branch': branch,
+                                'merge_commit': commit_hash[:8],
+                                'github_url': f'https://github.com/kangxh75/NextPM/pull/{pr_number}'
+                            })
+
+        return pr_data
+
+    except Exception as e:
+        print(f"Warning: Could not collect PR data for {spec_id}: {e}")
+        return []
+
+def generate_commit_item_html(commit, is_latest=False):
+    """Generate HTML for a single commit timeline item."""
+    timeline_class = 'timeline-item latest' if is_latest else 'timeline-item'
+
+    return f'''        <div class="{timeline_class}">
+            <div class="timeline-marker timeline-marker-commit"></div>
             <div class="timeline-content">
+                <div class="timeline-type-badge commit-badge">📝 Commit</div>
                 <div class="commit-header">
                     <span class="commit-hash">#{commit['hash']}</span>
                     <span class="commit-date">{commit['date'][:10]}</span>
@@ -320,6 +411,75 @@ def generate_commit_timeline_html(git_data):
             </div>
         </div>
 '''
+
+def generate_pr_item_html(pr, is_latest=False):
+    """Generate HTML for a single PR timeline item."""
+    timeline_class = 'timeline-item latest' if is_latest else 'timeline-item'
+
+    reviewers_html = ''
+    if pr.get('reviewers'):
+        reviewers_html = '<span class="pr-reviewers">👥 Reviewers: ' + ', '.join(pr['reviewers']) + '</span>'
+
+    return f'''        <div class="{timeline_class}">
+            <div class="timeline-marker timeline-marker-pr"></div>
+            <div class="timeline-content">
+                <div class="timeline-type-badge pr-badge">🔀 Pull Request #{pr['pr_number']}</div>
+                <div class="pr-header">
+                    <a href="{pr['github_url']}" target="_blank" class="pr-link">
+                        <span class="pr-title">{pr['title']}</span>
+                    </a>
+                    <span class="pr-date">{pr['merge_date'][:10]}</span>
+                </div>
+                <div class="pr-meta">
+                    <span class="pr-author">👤 {pr['author']}</span>
+                    <span class="pr-branch">🌿 {pr['branch']}</span>
+                    {reviewers_html}
+                </div>
+            </div>
+        </div>
+'''
+
+def generate_commit_timeline_html(git_data):
+    """Generate HTML visualization for commit and PR timeline."""
+    commits = git_data.get('commits', [])
+    prs = git_data.get('pull_requests', [])
+
+    if not commits and not prs:
+        return '<div class="commit-timeline-empty">No commits or PRs linked to this spec yet.</div>'
+
+    # Merge commits and PRs into unified timeline
+    timeline_items = []
+
+    # Add commits
+    for commit in commits:
+        timeline_items.append({
+            'type': 'commit',
+            'date': commit['date'],
+            'data': commit
+        })
+
+    # Add PRs
+    for pr in prs:
+        timeline_items.append({
+            'type': 'pr',
+            'date': pr['merge_date'],
+            'data': pr
+        })
+
+    # Sort by date (most recent first)
+    timeline_items.sort(key=lambda x: x['date'], reverse=True)
+
+    html = '<div class="commit-timeline">\n'
+    html += '    <h4>📝 Development Timeline</h4>\n'
+    html += '    <div class="timeline-container">\n'
+
+    for i, item in enumerate(timeline_items):
+        is_latest = i == 0
+
+        if item['type'] == 'commit':
+            html += generate_commit_item_html(item['data'], is_latest)
+        else:  # pr
+            html += generate_pr_item_html(item['data'], is_latest)
 
     html += '    </div>\n</div>\n'
     return html
@@ -438,6 +598,7 @@ def generate_search_index(spec_metadata_collection):
                 'content': searchable_content[:1000],  # Limit content for index size
                 'last_updated': metadata.get('last_updated', ''),
                 'git_commits': len(metadata.get('git_commits', {}).get('commits', [])),
+                'pull_requests': len(metadata.get('git_commits', {}).get('pull_requests', [])),
                 'url': f'engineering/specs/{metadata["filename"]}'
             }
 
@@ -638,11 +799,15 @@ def generate_spec_dashboard(spec_metadata_collection):
     status_counts = defaultdict(int)
     priority_counts = defaultdict(int)
     category_counts = defaultdict(int)
+    total_commits = 0
+    total_prs = 0
 
     for metadata in spec_metadata_collection:
         status_counts[metadata.get('status', 'draft')] += 1
         priority_counts[metadata.get('priority', 'medium')] += 1
         category_counts[metadata.get('category', 'nextpm-feature')] += 1
+        total_commits += len(metadata.get('git_commits', {}).get('commits', []))
+        total_prs += len(metadata.get('git_commits', {}).get('pull_requests', []))
 
     # Get recent activity
     recent_specs = sorted(spec_metadata_collection,
@@ -699,6 +864,14 @@ def generate_spec_dashboard(spec_metadata_collection):
     <div class="stat-card">
         <div class="stat-number">{status_counts.get('draft', 0)}</div>
         <div class="stat-label">Draft</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">{total_commits}</div>
+        <div class="stat-label">Commits</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">{total_prs}</div>
+        <div class="stat-label">Pull Requests</div>
     </div>
 </div>
 

@@ -458,6 +458,96 @@
   margin: 16px 0;
 }
 
+/* ===== PR TIMELINE STYLES ===== */
+.timeline-type-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.commit-badge {
+  background: linear-gradient(135deg, #6c757d, #868e96);
+  color: white;
+}
+
+.pr-badge {
+  background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+  color: white;
+}
+
+.timeline-marker-pr {
+  background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
+}
+
+.timeline-marker-commit {
+  background: #6c757d;
+}
+
+.pr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  gap: 12px;
+}
+
+.pr-link {
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+  transition: color 0.2s ease;
+}
+
+.pr-link:hover {
+  color: #8b5cf6;
+}
+
+.pr-link:hover .pr-title {
+  text-decoration: underline;
+}
+
+.pr-title {
+  font-weight: 500;
+  color: #1d1d1f;
+  display: block;
+  line-height: 1.4;
+}
+
+.pr-date {
+  color: #6c757d;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.pr-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.pr-author, .pr-branch, .pr-reviewers {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pr-reviewers {
+  font-size: 0.85rem;
+  color: #495057;
+}
+
+/* Enhanced hover effect for PR items */
+.timeline-item:has(.pr-badge) .timeline-content:hover {
+  border-color: #8b5cf6;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+}
+
 /* ===== SEARCH & FILTER INTERFACE ===== */
 .search-section {
   background: linear-gradient(135deg, #ffffff, #f8f9fa);

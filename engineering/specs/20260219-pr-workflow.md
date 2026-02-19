@@ -22,6 +22,8 @@ state_history:
 **Date:** 2026-02-19
 **Version:** 1.0
 
+> **Related:** See [20260219-pr-tracking](20260219-pr-tracking.md) for the technical implementation of PR tracking and timeline visualization.
+
 ## Overview
 
 Establish a Pull Request-based development workflow for NextPM that separates PM specification work from implementation work, enabling clear role separation, code review, and professional Git practices. This workflow supports both team collaboration and solo development with AI coding assistants.

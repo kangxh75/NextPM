@@ -22,6 +22,8 @@ state_history:
 **Date:** 2026-02-19
 **Version:** 1.0
 
+> **Related:** See [20260219-pr-workflow](20260219-pr-workflow.md) for the complete PR workflow documentation and best practices.
+
 ## Overview
 
 Extend NextPM's commit tracking system to also track and display Pull Requests in spec timelines. This enables complete visibility into the development journey from spec → commits → PR → merge, showcasing professional GitHub workflows and team collaboration patterns.

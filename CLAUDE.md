@@ -256,10 +256,20 @@ NextPM follows a strict Pull Request workflow for all changes. Direct commits to
 - ✅ Review changes in "Files changed" tab before merging
 - ✅ Delete branch after merge
 
-**Emergency Hotfixes Only:**
-Direct commits to master are acceptable **only** for:
-- Critical production fixes that can't wait for PR review
-- One-line configuration fixes (e.g., missing navigation entry)
+**Exceptions: Direct Commits Allowed**
+
+Direct commits to master are acceptable for:
+
+1. **Project Documentation Files:**
+   - `CLAUDE.md` - Project instructions for AI assistants
+   - `README.md` - Project overview and setup instructions
+   - These are meta-documentation, not tied to specific features
+
+2. **Emergency Hotfixes:**
+   - Critical production fixes that can't wait for PR review
+   - One-line configuration fixes (e.g., missing navigation entry)
+
+**Rationale:** Documentation updates to CLAUDE.md and README.md don't require PR review since they describe the project itself, not implement features. They're often made in response to workflow improvements discovered during development.
 
 **Commit Message Format:**
 - Always use conventional commits: `feat:`, `fix:`, `docs:`, `refactor:`, etc.

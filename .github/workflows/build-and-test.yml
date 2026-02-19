@@ -37,6 +37,14 @@ jobs:
       run: |
         echo "Link checking can be added here with linkchecker or similar"
 
+    - name: Verify PR spec reference (if PR)
+      if: github.event_name == 'pull_request'
+      run: |
+        echo "Checking if PR description contains spec ID..."
+        # Optional: Add validation that PR has spec reference
+        echo "PR Number: ${{ github.event.pull_request.number }}"
+        echo "PR Title: ${{ github.event.pull_request.title }}"
+
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:

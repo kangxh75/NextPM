@@ -28,7 +28,7 @@
 </div>
 
 <!-- Dashboard Styles and JavaScript -->
-<link rel="stylesheet" href="../../assets/css/dashboard.css?v=9">
-<script src="../../assets/js/dashboard.js?v=5"></script>
+<link rel="stylesheet" href="../../assets/css/dashboard.css?v=10">
+<script src="../../assets/js/dashboard.js?v=6"></script>
 <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="../../assets/js/activity-graph.js?v=2"></script>
+<script src="../../assets/js/activity-graph.js?v=3"></script>
